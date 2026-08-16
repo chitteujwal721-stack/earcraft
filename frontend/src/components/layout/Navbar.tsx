@@ -49,24 +49,39 @@ export const Navbar: React.FC = () => {
             : 'bg-[#F6F7F9]/80 backdrop-blur-md py-3.5 border-b border-[#E5E7EB]/60'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative flex items-center justify-between min-h-[52px]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between min-h-[56px]">
           
-          {/* Left: Clean Minimal Navigation Links */}
-          <div className="hidden lg:flex items-center gap-6">
-            <Link to="/" className="text-[11px] font-bold uppercase tracking-widest text-[#6B7280] hover:text-[#111111] transition-colors">
+          {/* Left: Brand Logo */}
+          <div className="flex items-center gap-6">
+            <Link to="/" className="flex items-center gap-3 group">
+              <img src="/logo.png" alt="EarCraft Logo" className="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
+              <div className="hidden sm:flex flex-col">
+                <span className="font-display text-xl font-extrabold tracking-[0.2em] text-[#111111] group-hover:text-[#6D5EF6] transition-colors leading-none">
+                  EAR<span className="text-[#6D5EF6]">CRAFT</span>
+                </span>
+                <span className="text-[8px] uppercase tracking-[0.25em] text-[#6B7280] font-medium mt-0.5">
+                  {settings.tagline || 'Crafted to Shine'}
+                </span>
+              </div>
+            </Link>
+          </div>
+
+          {/* Center: Navigation Links */}
+          <div className="hidden lg:flex items-center gap-8">
+            <Link to="/" className="text-xs font-bold uppercase tracking-widest text-[#6B7280] hover:text-[#111111] transition-colors">
               Home
             </Link>
-            <Link to="/shop?series=crafted" className="text-[11px] font-bold uppercase tracking-widest text-[#6B7280] hover:text-[#6D5EF6] transition-colors">
-              Crafted Series
-            </Link>
-            <Link to="/shop?series=unisex" className="text-[11px] font-bold uppercase tracking-widest text-[#6B7280] hover:text-[#6D5EF6] transition-colors">
+            <Link to="/shop?series=unisex" className="text-xs font-bold uppercase tracking-widest text-[#6B7280] hover:text-[#6D5EF6] transition-colors">
               Unisex Series
             </Link>
-            <a href="/#why-earcraft" className="text-[11px] font-bold uppercase tracking-widest text-[#6B7280] hover:text-[#111111] transition-colors">
-              About
-            </a>
-            <Link to="/contact" className="text-[11px] font-bold uppercase tracking-widest text-[#6B7280] hover:text-[#111111] transition-colors">
+            <Link to="/shop?series=crafted" className="text-xs font-bold uppercase tracking-widest text-[#6B7280] hover:text-[#6D5EF6] transition-colors">
+              Crafted Series
+            </Link>
+            <Link to="/contact" className="text-xs font-bold uppercase tracking-widest text-[#6B7280] hover:text-[#111111] transition-colors">
               Contact
+            </Link>
+            <Link to="/about-us" className="text-xs font-bold uppercase tracking-widest text-[#6B7280] hover:text-[#111111] transition-colors">
+              About Us
             </Link>
           </div>
 
@@ -79,18 +94,6 @@ export const Navbar: React.FC = () => {
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
-          </div>
-
-          {/* Center: Perfectly Centered Brand Title & Tagline */}
-          <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center text-center pointer-events-auto">
-            <Link to="/" className="flex flex-col items-center group">
-              <span className="font-display text-2xl sm:text-3xl font-extrabold tracking-[0.25em] text-[#111111] group-hover:text-[#6D5EF6] transition-colors leading-none">
-                EAR<span className="text-[#6D5EF6]">CRAFT</span>
-              </span>
-              <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.3em] text-[#6B7280] font-medium group-hover:text-[#111111] transition-colors mt-1 whitespace-nowrap">
-                {settings.tagline || 'Crafted to Shine. Exceptional Sound.'}
-              </span>
-            </Link>
           </div>
 
           {/* Right: Clean Action Icons */}
@@ -167,7 +170,7 @@ export const Navbar: React.FC = () => {
             </div>
 
             <div className="pt-6 border-t border-[#E5E7EB] space-y-4">
-              <a href="/#why-earcraft" className="block text-base font-display text-[#111111]">Why EarCraft</a>
+              <Link to="/about-us" className="block text-base font-display text-[#111111]">About Us</Link>
               <Link to="/contact" className="block text-base font-display text-[#111111]">Contact Support</Link>
             </div>
           </div>

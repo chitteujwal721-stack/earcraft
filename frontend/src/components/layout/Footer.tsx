@@ -64,8 +64,9 @@ export const Footer: React.FC = () => {
         
         {/* Brand Story Column */}
         <div className="lg:col-span-4 space-y-4">
-          <Link to="/" className="inline-block">
-            <span className="font-display text-3xl font-extrabold tracking-widest text-[#111111]">
+          <Link to="/" className="inline-flex items-center gap-3">
+            <img src="/logo.png" alt="EarCraft Logo" className="h-12 w-auto object-contain" />
+            <span className="font-display text-2xl font-extrabold tracking-widest text-[#111111]">
               EAR<span className="text-[#6D5EF6]">CRAFT</span>
             </span>
           </Link>
@@ -109,7 +110,7 @@ export const Footer: React.FC = () => {
             <li><Link to="/" className="hover:text-[#6D5EF6] transition-colors">Home</Link></li>
             <li><Link to="/shop?series=crafted" className="hover:text-[#6D5EF6] transition-colors">Crafted Series — Premium Collection</Link></li>
             <li><Link to="/shop?series=unisex" className="hover:text-[#6D5EF6] transition-colors">Unisex Series — Everyday Collection</Link></li>
-            <li><a href="/#why-earcraft" className="hover:text-[#6D5EF6] transition-colors">About EarCraft</a></li>
+            <li><Link to="/about-us" className="hover:text-[#6D5EF6] transition-colors">About EarCraft</Link></li>
             <li><Link to="/contact" className="hover:text-[#6D5EF6] transition-colors">Contact Support</Link></li>
           </ul>
         </div>
