@@ -204,12 +204,12 @@ export const mockProducts: Product[] = [
     created_at: '2026-08-05T00:00:00Z',
   },
   {
-    id: 'prod-unisex-knot',
-    title: 'Unisex Knot',
-    slug: 'unisex-knot',
-    subtitle: 'Universal Minimalist Infinity Earbuds',
-    description: 'Everyday universal audio engineered for light ergonomics, clean aesthetic lines, and crystal-clear sound.',
-    story: 'Crafted for effortless daily wear, offering balanced acoustics and universal style for everyone.',
+    id: 'prod-unisex-classic-black',
+    title: 'Unisex Classic Black',
+    slug: 'unisex-classic-black',
+    subtitle: 'Classic Black Ergonomic Fit & Crisp Audio',
+    description: 'Minimalist classic black acoustic earpieces designed for universal everyday comfort and high-definition sound output.',
+    story: 'Crafted for effortless daily wear, offering balanced acoustics and clean classic style for everyone.',
     craftsmanship_details: 'Lightweight ergonomic fit, touch controls, IPX4 splash resistance.',
     hsn_code: '85183000',
     gst_percentage: 18,
@@ -223,16 +223,47 @@ export const mockProducts: Product[] = [
     is_best_seller: true,
     is_trending: true,
     images: [
-      { id: 'img-unisex-knot', url: '/unisex/crafted_knot.png', alt_text: 'Unisex Knot', is_primary: true, order: 1 }
+      { id: 'img-unisex-classic-black', url: '/unisex/unisex_Classic black.png', alt_text: 'Unisex Classic Black', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-uk-1', sku: 'EC-UNI-KNOT', name: 'Universal Silver', material: 'Ergonomic Polymer', color: '#6B7280', price: 1499, stock_quantity: 40, is_available: true }
+      { id: 'var-uk-1', sku: 'EC-UNI-CLS-BLK', name: 'Classic Black', material: 'Ergonomic Polymer', color: '#111111', price: 1499, stock_quantity: 40, is_available: true }
     ],
     avg_rating: 4.8,
     review_count: 76,
     reviews: [],
     questions: [],
     created_at: '2026-08-06T00:00:00Z',
+  },
+  {
+    id: 'prod-unisex-knot',
+    title: 'Unisex Knot',
+    slug: 'unisex-knot',
+    subtitle: 'Universal Minimalist Infinity Earbuds',
+    description: 'Everyday universal audio engineered for light ergonomics, clean aesthetic lines, and crystal-clear sound.',
+    story: 'Crafted for effortless daily wear, offering balanced acoustics and universal style for everyone.',
+    craftsmanship_details: 'Lightweight ergonomic fit, touch controls, IPX4 splash resistance.',
+    hsn_code: '85183000',
+    gst_percentage: 18,
+    barcode: '8901234567809',
+    category: mockCategories[1],
+    collection: mockCollections[1],
+    base_price: 1499,
+    compare_at_price: 2199,
+    is_featured: true,
+    is_new_arrival: false,
+    is_best_seller: true,
+    is_trending: true,
+    images: [
+      { id: 'img-unisex-knot', url: '/unisex/crafted_knot.png', alt_text: 'Unisex Knot', is_primary: true, order: 1 }
+    ],
+    variants: [
+      { id: 'var-uk-knot', sku: 'EC-UNI-KNOT', name: 'Universal Silver', material: 'Ergonomic Polymer', color: '#6B7280', price: 1499, stock_quantity: 35, is_available: true }
+    ],
+    avg_rating: 4.9,
+    review_count: 62,
+    reviews: [],
+    questions: [],
+    created_at: '2026-08-07T00:00:00Z',
   },
   {
     id: 'prod-unisex-black',
@@ -263,7 +294,7 @@ export const mockProducts: Product[] = [
     review_count: 59,
     reviews: [],
     questions: [],
-    created_at: '2026-08-07T00:00:00Z',
+    created_at: '2026-08-08T00:00:00Z',
   },
   {
     id: 'prod-unisex-white',

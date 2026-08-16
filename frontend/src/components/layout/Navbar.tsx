@@ -122,15 +122,6 @@ export const Navbar: React.FC = () => {
               )}
             </Link>
 
-            {/* Account Dashboard */}
-            <Link
-              to="/customer/dashboard"
-              className="p-2 text-[#6B7280] hover:text-[#111111] transition-colors rounded-full hover:bg-white"
-              aria-label="Customer Account"
-            >
-              <UserIcon className="w-4 h-4" />
-            </Link>
-
             {/* Cart Drawer Toggle */}
             <button
               onClick={() => dispatch(toggleCartDrawer(true))}
