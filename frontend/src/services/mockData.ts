@@ -353,7 +353,7 @@ export const mockAnnouncementBar: AnnouncementBarConfig = {
 export const mockSiteSettings: SiteSettings = {
   logo_url: '/logo.png',
   brand_name: 'EARCRAFT',
-  tagline: 'Crafted to Shine. Exceptional Sound.',
+  tagline: 'Where style meets sound perfection',
   contact_email: 'concierge@earcraft.com',
   contact_phone: '+91 (0) 800-EAR-CRAFT',
   address: 'EarCraft Acoustic Labs, Tech Plaza, London / Mumbai / Tokyo',

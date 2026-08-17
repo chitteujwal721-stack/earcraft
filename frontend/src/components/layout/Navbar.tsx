@@ -60,7 +60,7 @@ export const Navbar: React.FC = () => {
                   EAR<span className="text-[#6D5EF6]">CRAFT</span>
                 </span>
                 <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-[#6B7280] font-medium mt-1">
-                  {settings.tagline || 'Crafted to Shine'}
+                  {settings.tagline || 'Where style meets sound perfection'}
                 </span>
               </div>
             </Link>
