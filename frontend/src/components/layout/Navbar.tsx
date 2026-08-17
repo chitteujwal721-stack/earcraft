@@ -49,17 +49,17 @@ export const Navbar: React.FC = () => {
             : 'bg-[#F6F7F9]/80 backdrop-blur-md py-3.5 border-b border-[#E5E7EB]/60'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between min-h-[56px]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between min-h-[68px]">
           
           {/* Left: Brand Logo */}
           <div className="flex items-center gap-6">
-            <Link to="/" className="flex items-center gap-3 group">
-              <img src="/logo.png" alt="EarCraft Logo" className="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
+            <Link to="/" className="flex items-center gap-3.5 group">
+              <img src="/logo.png" alt="EarCraft Logo" className="h-14 sm:h-16 lg:h-18 w-auto object-contain transition-transform group-hover:scale-105" />
               <div className="hidden sm:flex flex-col">
-                <span className="font-display text-xl font-extrabold tracking-[0.2em] text-[#111111] group-hover:text-[#6D5EF6] transition-colors leading-none">
+                <span className="font-display text-2xl sm:text-3xl font-extrabold tracking-[0.2em] text-[#111111] group-hover:text-[#6D5EF6] transition-colors leading-none">
                   EAR<span className="text-[#6D5EF6]">CRAFT</span>
                 </span>
-                <span className="text-[8px] uppercase tracking-[0.25em] text-[#6B7280] font-medium mt-0.5">
+                <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-[#6B7280] font-medium mt-1">
                   {settings.tagline || 'Crafted to Shine'}
                 </span>
               </div>

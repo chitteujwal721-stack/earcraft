@@ -64,9 +64,9 @@ export const Footer: React.FC = () => {
         
         {/* Brand Story Column */}
         <div className="lg:col-span-4 space-y-4">
-          <Link to="/" className="inline-flex items-center gap-3">
-            <img src="/logo.png" alt="EarCraft Logo" className="h-12 w-auto object-contain" />
-            <span className="font-display text-2xl font-extrabold tracking-widest text-[#111111]">
+          <Link to="/" className="inline-flex items-center gap-3.5">
+            <img src="/logo.png" alt="EarCraft Logo" className="h-16 sm:h-20 w-auto object-contain" />
+            <span className="font-display text-3xl sm:text-4xl font-extrabold tracking-widest text-[#111111]">
               EAR<span className="text-[#6D5EF6]">CRAFT</span>
             </span>
           </Link>
