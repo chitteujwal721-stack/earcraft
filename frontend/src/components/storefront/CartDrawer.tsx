@@ -32,10 +32,6 @@ export const CartDrawer: React.FC = () => {
     }
   }
 
-  const freeShippingThreshold = settings.free_shipping_threshold || 15000;
-  const remainingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
-  const freeShippingProgress = Math.min(100, (subtotal / freeShippingThreshold) * 100);
-
   const handleApplyCoupon = (e: React.FormEvent) => {
     e.preventDefault();
     setCouponError('');
@@ -87,25 +83,6 @@ export const CartDrawer: React.FC = () => {
             >
               <X className="w-6 h-6" />
             </button>
-          </div>
-
-          {/* Free Shipping Progress Indicator */}
-          <div className="px-6 py-3.5 bg-[#F6F7F9] border-b border-[#E5E7EB]">
-            {remainingForFreeShipping > 0 ? (
-              <p className="text-xs text-[#6B7280]">
-                Add <span className="font-bold text-[#6D5EF6]">₹{remainingForFreeShipping.toLocaleString()}</span> more for Complimentary Insured Express Delivery.
-              </p>
-            ) : (
-              <p className="text-xs text-[#6D5EF6] font-semibold flex items-center gap-1">
-                <ShieldCheck className="w-4 h-4" /> Unlocked Complimentary Express Insured Delivery!
-              </p>
-            )}
-            <div className="w-full bg-[#E5E7EB] h-1.5 rounded-full mt-2 overflow-hidden">
-              <div
-                className="bg-[#6D5EF6] h-full transition-all duration-500 rounded-full"
-                style={{ width: `${freeShippingProgress}%` }}
-              />
-            </div>
           </div>
 
           {/* Cart Items List */}
@@ -222,14 +199,10 @@ export const CartDrawer: React.FC = () => {
                   <span>-₹{discount.toLocaleString()}</span>
                 </div>
               )}
-              <div className="flex justify-between text-xs text-[#6B7280]">
-                <span>Insured Express Delivery</span>
-                <span>{remainingForFreeShipping === 0 ? 'FREE' : '₹500'}</span>
-              </div>
               <div className="flex justify-between text-sm font-extrabold text-[#111111] pt-2 border-t border-[#E5E7EB]">
                 <span>Total Amount</span>
                 <span className="text-[#6D5EF6]">
-                  ₹{(subtotal - discount + (remainingForFreeShipping === 0 ? 0 : 500)).toLocaleString()}
+                  ₹{(subtotal - discount).toLocaleString()}
                 </span>
               </div>
 
