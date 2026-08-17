@@ -60,9 +60,9 @@ export const HeroCarousel: React.FC = () => {
       <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-[#8B7EFF]/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
 
       {/* Floating 3D Product Image Render */}
-      <div className="absolute inset-0 flex items-center justify-center lg:justify-end lg:pr-24 pointer-events-none z-10">
+      <div className="absolute inset-0 flex items-center justify-center lg:justify-end lg:pr-24 pointer-events-none z-10 opacity-25 sm:opacity-50 lg:opacity-100 transition-opacity duration-500">
         <div
-          className="relative w-[380px] sm:w-[520px] lg:w-[600px] h-[380px] sm:h-[520px] lg:h-[600px] transition-transform duration-700 ease-out animate-float-slow"
+          className="relative w-[280px] sm:w-[440px] lg:w-[600px] h-[280px] sm:h-[440px] lg:h-[600px] transition-transform duration-700 ease-out animate-float-slow"
           style={{
             transform: `translate3d(${mousePos.x * 1.2}px, ${mousePos.y * 1.2}px, 0) rotate(${mousePos.x * 0.1}deg)`
           }}

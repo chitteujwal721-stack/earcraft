@@ -184,7 +184,81 @@ def seed():
         ProductImage.objects.create(product=p4, url='https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=80', alt_text='EarCraft Urban Air', is_primary=True, order=1)
         ProductVariant.objects.create(product=p4, sku='EC-UNI-AIR-SLV', name='Pure White', material='Matte Polymer', color='#FFFFFF', price=12900.00, stock_quantity=30)
 
-    print(f"Products seeded: '{p1.title}', '{p2.title}', '{p3.title}', '{p4.title}'")
+    p5, p5_created = Product.objects.get_or_create(
+        slug='golden-crafted-diamond',
+        defaults={
+            'category': cat_crafted,
+            'collection': col_crafted,
+            'title': 'Golden Crafted Diamond',
+            'subtitle': 'Bespoke 24K Gold Diamond Facet Edition with Graphene Drivers',
+            'description': 'Featuring precision 24K gold-plated diamond-cut acoustic casing and high-fidelity sound stage output.',
+            'base_price': 3499.00,
+            'compare_at_price': 4499.00,
+            'hsn_code': '85183000',
+            'gst_percentage': 18.00,
+            'barcode': '8901234567806',
+            'status': 'ACTIVE',
+            'is_featured': True,
+            'is_new_arrival': True,
+            'is_best_seller': True,
+            'avg_rating': 5.00,
+            'review_count': 78,
+        }
+    )
+    if p5_created:
+        ProductImage.objects.create(product=p5, url='/goldencolor/golden_crafted_diamond.png', alt_text='Golden Crafted Diamond', is_primary=True, order=1)
+        ProductVariant.objects.create(product=p5, sku='EC-CRF-GLD-DMND', name='24K Golden Diamond', material='24K Gold Plated Alloy', color='#D4AF37', price=3499.00, stock_quantity=15)
+
+    p6, p6_created = Product.objects.get_or_create(
+        slug='golden-crafted-drop',
+        defaults={
+            'category': cat_crafted,
+            'collection': col_crafted,
+            'title': 'Golden Crafted Drop',
+            'subtitle': 'Signature Golden Acoustic Drop Edition with 45dB Hybrid ANC',
+            'description': 'The Golden Crafted Drop features bespoke acoustic architecture in a radiant 24K gold finish.',
+            'base_price': 2999.00,
+            'compare_at_price': 3999.00,
+            'hsn_code': '85183000',
+            'gst_percentage': 18.00,
+            'barcode': '8901234567807',
+            'status': 'ACTIVE',
+            'is_featured': True,
+            'is_new_arrival': True,
+            'is_best_seller': True,
+            'avg_rating': 4.90,
+            'review_count': 65,
+        }
+    )
+    if p6_created:
+        ProductImage.objects.create(product=p6, url='/goldencolor/golden_crafted_draft.png', alt_text='Golden Crafted Drop', is_primary=True, order=1)
+        ProductVariant.objects.create(product=p6, sku='EC-CRF-GLD-DROP', name='24K Golden Drop', material='24K Gold Plated Alloy', color='#FFD700', price=2999.00, stock_quantity=20)
+
+    p7, p7_created = Product.objects.get_or_create(
+        slug='golden-crafted-florat',
+        defaults={
+            'category': cat_crafted,
+            'collection': col_crafted,
+            'title': 'Golden Crafted Florat',
+            'subtitle': 'Botanical Floral Inspired Golden Acoustic Earbuds',
+            'description': 'An elegant gold-adorned floral motif meets studio reference audio tuning.',
+            'base_price': 2999.00,
+            'compare_at_price': 3899.00,
+            'hsn_code': '85183000',
+            'gst_percentage': 18.00,
+            'barcode': '8901234567808',
+            'status': 'ACTIVE',
+            'is_featured': True,
+            'is_new_arrival': True,
+            'avg_rating': 4.90,
+            'review_count': 52,
+        }
+    )
+    if p7_created:
+        ProductImage.objects.create(product=p7, url='/goldencolor/golden_crafted_florat.png', alt_text='Golden Crafted Florat', is_primary=True, order=1)
+        ProductVariant.objects.create(product=p7, sku='EC-CRF-GLD-FLRT', name='24K Golden Floral', material='24K Gold Anodized Alloy', color='#E6CA65', price=2999.00, stock_quantity=18)
+
+    print(f"Products seeded: '{p1.title}', '{p2.title}', '{p3.title}', '{p4.title}', '{p5.title}', '{p6.title}', '{p7.title}'")
     print(f"Crafted Series product count: {cat_crafted.product_count}")
     print(f"Unisex Series product count: {cat_unisex.product_count}")
 
