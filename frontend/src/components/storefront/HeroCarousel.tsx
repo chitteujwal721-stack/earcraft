@@ -45,7 +45,7 @@ export const HeroCarousel: React.FC = () => {
   };
 
   return (
-    <div className="relative h-screen min-h-[720px] w-full overflow-hidden bg-[#F6F7F9] flex items-center border-b border-[#E5E7EB]">
+    <div className="relative min-h-[580px] sm:min-h-[720px] lg:h-screen w-full overflow-hidden bg-[#F6F7F9] flex items-center py-12 sm:py-24 border-b border-[#E5E7EB]">
       
       {/* Soft Ambient Light Glow Following Cursor */}
       <div
@@ -60,9 +60,9 @@ export const HeroCarousel: React.FC = () => {
       <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-[#8B7EFF]/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
 
       {/* Floating 3D Product Image Render */}
-      <div className="absolute inset-0 flex items-center justify-center lg:justify-end lg:pr-24 pointer-events-none z-10 opacity-25 sm:opacity-50 lg:opacity-100 transition-opacity duration-500">
+      <div className="absolute inset-0 flex items-center justify-center lg:justify-end lg:pr-24 pointer-events-none z-10 opacity-20 sm:opacity-50 lg:opacity-100 transition-opacity duration-500">
         <div
-          className="relative w-[280px] sm:w-[440px] lg:w-[600px] h-[280px] sm:h-[440px] lg:h-[600px] transition-transform duration-700 ease-out animate-float-slow"
+          className="relative w-[240px] sm:w-[440px] lg:w-[600px] h-[240px] sm:h-[440px] lg:h-[600px] transition-transform duration-700 ease-out animate-float-slow"
           style={{
             transform: `translate3d(${mousePos.x * 1.2}px, ${mousePos.y * 1.2}px, 0) rotate(${mousePos.x * 0.1}deg)`
           }}
@@ -78,18 +78,18 @@ export const HeroCarousel: React.FC = () => {
 
       {/* Hero Content Overlay */}
       <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 z-20">
-        <div className="max-w-2xl space-y-6">
+        <div className="max-w-2xl space-y-4 sm:space-y-6">
           
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#E5E7EB] text-[#6D5EF6] text-xs font-bold uppercase tracking-widest shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-[#6D5EF6] animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#E5E7EB] text-[#6D5EF6] text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest shadow-sm">
+            <Sparkles className="w-3.5 h-3.5 text-[#6D5EF6] animate-pulse shrink-0" />
             <span>EarCraft Luxury Audio Electronics</span>
           </div>
 
-          <h1 className="font-display text-5xl sm:text-7xl font-extrabold tracking-tight text-[#111111] leading-none">
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#111111] leading-tight sm:leading-none">
             {currentSlide.title}
           </h1>
 
-          <p className="text-xl sm:text-2xl text-[#111111] font-medium leading-snug font-display">
+          <p className="text-lg sm:text-2xl text-[#111111] font-medium leading-snug font-display">
             {currentSlide.subtitle}
           </p>
 
@@ -98,10 +98,10 @@ export const HeroCarousel: React.FC = () => {
           </p>
 
           {/* Action Buttons */}
-          <div className="pt-4 flex flex-wrap gap-4 items-center">
+          <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
             <Link
               to={currentSlide.cta_link || '/shop?series=crafted'}
-              className="bg-[#111111] hover:bg-[#6D5EF6] text-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest flex items-center gap-3 transition-all luxury-shadow shadow-xl hover:scale-105 font-display"
+              className="bg-[#111111] hover:bg-[#6D5EF6] text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-3 transition-all luxury-shadow shadow-xl font-display"
             >
               <span>{currentSlide.cta_text || 'Explore Crafted'}</span>
               <ArrowRight className="w-4 h-4" />
@@ -109,7 +109,7 @@ export const HeroCarousel: React.FC = () => {
 
             <Link
               to="/shop?series=unisex"
-              className="bg-white hover:bg-[#F6F7F9] text-[#111111] border border-[#E5E7EB] px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest flex items-center gap-3 transition-all luxury-shadow hover:scale-105 font-display"
+              className="bg-white hover:bg-[#F6F7F9] text-[#111111] border border-[#E5E7EB] px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-3 transition-all luxury-shadow font-display"
             >
               <span>Explore Unisex</span>
               <ArrowRight className="w-4 h-4 text-[#6D5EF6]" />

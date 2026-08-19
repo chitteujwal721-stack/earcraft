@@ -6,7 +6,7 @@
  * For India (+91) with 9920349076 -> '919920349076'
  */
 export const WHATSAPP_CONFIG = {
-  phoneNumber: '919920349076',
+  phoneNumber: '918591754505',
   storeName: 'EarCraft',
   baseUrl: 'https://wa.me',
 };

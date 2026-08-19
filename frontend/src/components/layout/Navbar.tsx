@@ -51,15 +51,28 @@ export const Navbar: React.FC = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between min-h-[68px]">
           
-          {/* Left: Brand Logo */}
+          {/* Mobile Hamburger Button (Left on Mobile) */}
+          <div className="flex lg:hidden items-center mr-2">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-full hover:bg-white text-[#111111] hover:text-[#6D5EF6] transition-colors"
+              aria-label="Toggle Mobile Menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+
+          {/* Brand Logo */}
           <div className="flex items-center gap-6">
-            <Link to="/" className="flex items-center gap-3.5 group">
-              <img src="/logo.png" alt="EarCraft Logo" className="h-14 sm:h-16 lg:h-18 w-auto object-contain transition-transform group-hover:scale-105" />
-              <div className="hidden sm:flex flex-col">
-                <span className="font-display text-2xl sm:text-3xl font-extrabold tracking-[0.2em] text-[#111111] group-hover:text-[#6D5EF6] transition-colors leading-none">
+            <Link to="/" className="flex items-center gap-3 group">
+              <div className="w-11 h-11 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden border-2 border-[#6D5EF6]/30 shadow-md flex items-center justify-center bg-white shrink-0 group-hover:border-[#6D5EF6] transition-all">
+                <img src="/logo.png" alt="EarCraft Logo" className="w-full h-full object-cover rounded-full transition-transform duration-300 group-hover:scale-110" />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-display text-lg sm:text-2xl lg:text-3xl font-extrabold tracking-[0.18em] text-[#111111] group-hover:text-[#6D5EF6] transition-colors leading-none">
                   EAR<span className="text-[#6D5EF6]">CRAFT</span>
                 </span>
-                <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-[#6B7280] font-medium mt-1">
+                <span className="hidden sm:inline-block text-[9px] sm:text-xs uppercase tracking-[0.25em] text-[#6B7280] font-medium mt-1">
                   {settings.tagline || 'Where style meets sound perfection'}
                 </span>
               </div>
@@ -85,19 +98,8 @@ export const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Mobile Hamburger Button (Left on Mobile) */}
-          <div className="flex lg:hidden items-center">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-1.5 text-[#111111] hover:text-[#6D5EF6]"
-              aria-label="Toggle Mobile Menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-
           {/* Right: Clean Action Icons */}
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             
             {/* Search Button */}
             <button

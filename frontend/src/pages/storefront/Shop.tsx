@@ -76,13 +76,13 @@ export const Shop: React.FC = () => {
         </p>
 
         {/* Series Switcher Tabs */}
-        <div className="flex justify-center gap-3 pt-4">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-4">
           <button
             onClick={() => {
               setSelectedSeries('all');
               setSearchParams({});
             }}
-            className={`px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest font-display transition-all border ${
+            className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest font-display transition-all border ${
               selectedSeries === 'all'
                 ? 'bg-[#111111] text-white border-[#111111] shadow-md'
                 : 'bg-[#F6F7F9] text-[#6B7280] border-[#E5E7EB] hover:text-[#111111]'
@@ -95,7 +95,7 @@ export const Shop: React.FC = () => {
               setSelectedSeries('crafted');
               setSearchParams({ series: 'crafted' });
             }}
-            className={`px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest font-display transition-all border ${
+            className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest font-display transition-all border ${
               selectedSeries === 'crafted'
                 ? 'bg-[#111111] text-white border-[#111111] shadow-md'
                 : 'bg-[#F6F7F9] text-[#6B7280] border-[#E5E7EB] hover:text-[#6D5EF6]'
@@ -108,7 +108,7 @@ export const Shop: React.FC = () => {
               setSelectedSeries('unisex');
               setSearchParams({ series: 'unisex' });
             }}
-            className={`px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest font-display transition-all border ${
+            className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest font-display transition-all border ${
               selectedSeries === 'unisex'
                 ? 'bg-[#6D5EF6] text-white border-[#6D5EF6] shadow-md'
                 : 'bg-[#F6F7F9] text-[#6B7280] border-[#E5E7EB] hover:text-[#6D5EF6]'

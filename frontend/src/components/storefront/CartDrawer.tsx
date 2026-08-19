@@ -68,7 +68,7 @@ export const CartDrawer: React.FC = () => {
         className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-in fade-in duration-300"
       />
 
-      <div className="absolute inset-y-0 right-0 max-w-full flex pl-10">
+      <div className="absolute inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
         <div className="w-screen max-w-md bg-[#FFFFFF] border-l border-[#E5E7EB] text-[#111111] flex flex-col shadow-2xl animate-in slide-in-from-right duration-300">
           
           {/* Cart Header */}

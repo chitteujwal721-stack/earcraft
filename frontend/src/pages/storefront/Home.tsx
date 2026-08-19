@@ -41,13 +41,10 @@ export const Home: React.FC = () => {
     craftedHeader,
     unisexHeader,
     whyFeatures,
-    showcaseAngles,
-    lifestyleBanner,
     testimonials,
     faqs
   } = useAppSelector(state => state.cms);
 
-  const [activeAngleIndex, setActiveAngleIndex] = useState(0);
   const [openFaqId, setOpenFaqId] = useState<string>(faqs[0]?.id || '');
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
@@ -162,86 +159,6 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 7: Premium Features (Interactive 360 & Driver Geometry) */}
-      {showcaseAngles.length > 0 && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white p-8 sm:p-12 rounded-3xl border border-[#E5E7EB] luxury-shadow grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Left Controls & Narrative */}
-            <div className="lg:col-span-5 space-y-6">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#6D5EF6] font-display flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4" /> 360° Studio Showcase
-              </span>
-              <h2 className="font-display text-4xl font-extrabold text-[#111111] leading-tight">
-                Acoustic Architecture Inspection
-              </h2>
-              <p className="text-sm text-[#6B7280] leading-relaxed">
-                Examine every beamforming microphone, graphene diaphragm, and optical glass touch sensor engineered for pure clarity.
-              </p>
-
-              {/* Angle Selector Tabs */}
-              <div className="flex flex-col gap-2.5 pt-2">
-                {showcaseAngles.map((angle, idx) => (
-                  <button
-                    key={angle.id || idx}
-                    onClick={() => setActiveAngleIndex(idx)}
-                    className={`p-4 rounded-xl text-left text-xs font-bold font-display uppercase tracking-wider transition-all border ${
-                      activeAngleIndex === idx
-                        ? 'bg-[#6D5EF6] border-[#6D5EF6] text-white violet-shadow-sm'
-                        : 'bg-[#F6F7F9] border-[#E5E7EB] text-[#6B7280] hover:text-[#111111]'
-                    }`}
-                  >
-                    {angle.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Showcase Display */}
-            <div className="lg:col-span-7 relative h-[450px] rounded-2xl overflow-hidden bg-[#F6F7F9] border border-[#E5E7EB] group flex items-center justify-center p-6">
-              <img
-                src={showcaseAngles[activeAngleIndex]?.img || showcaseAngles[0]?.img}
-                alt={showcaseAngles[activeAngleIndex]?.label || 'EarCraft Showcase'}
-                className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent flex items-end p-6">
-                <span className="text-xs font-display text-[#6D5EF6] font-bold">
-                  EarCraft Bespoke Precision Acoustic Calibration
-                </span>
-              </div>
-            </div>
-
-          </div>
-        </section>
-      )}
-
-      {/* SECTION 8: Dynamic Lifestyle Banner */}
-      <section className="relative h-[500px] w-full overflow-hidden bg-[#111111] flex items-center justify-center">
-        <img
-          src={lifestyleBanner.image_url || "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=2000&q=80"}
-          alt="EarCraft Lifestyle Experience"
-          className="absolute inset-0 w-full h-full object-cover opacity-50 scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/40 to-[#111111]/80" />
-        
-        <div className="relative z-10 text-center max-w-3xl px-4 space-y-6">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#6D5EF6] font-display">
-            {lifestyleBanner.badge || 'Luxury Sound Experience'}
-          </span>
-          <h2 className="font-display text-4xl sm:text-6xl font-extrabold text-white leading-tight">
-            {lifestyleBanner.title || 'Immerse Yourself in Pure Studio Fidelity'}
-          </h2>
-          <p className="text-sm text-gray-300 max-w-lg mx-auto">
-            {lifestyleBanner.subtitle || 'Experience uncompressed audio clarity, zero background distraction, and everyday elegance.'}
-          </p>
-          <Link
-            to={lifestyleBanner.cta_link || '/shop'}
-            className="inline-flex items-center gap-2 bg-[#6D5EF6] hover:bg-[#5847E4] text-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest transition-all violet-shadow-lg font-display"
-          >
-            {lifestyleBanner.cta_text || 'Order Your EarCraft Earbuds'} <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
 
       {/* SECTION 9: Best Sellers */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">

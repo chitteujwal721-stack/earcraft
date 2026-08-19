@@ -86,7 +86,7 @@ export const ProductDetail: React.FC = () => {
         
         {/* Left Sticky Image Gallery */}
         <div className="lg:col-span-7 space-y-4 lg:sticky lg:top-24">
-          <div className="relative h-[520px] rounded-3xl overflow-hidden bg-white border border-[#E5E7EB] luxury-shadow flex items-center justify-center p-6 group">
+          <div className="relative h-[340px] sm:h-[450px] lg:h-[520px] rounded-3xl overflow-hidden bg-white border border-[#E5E7EB] luxury-shadow flex items-center justify-center p-4 sm:p-6 group">
             {activeTab === '360' && product.three_sixty_images ? (
               <ThreeSixtyViewer images={product.three_sixty_images} />
             ) : (

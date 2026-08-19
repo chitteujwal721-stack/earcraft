@@ -38,7 +38,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <div className="group relative flex flex-col bg-[#FFFFFF] border border-[#E5E7EB] rounded-2xl overflow-hidden luxury-shadow-hover">
       
       {/* Image Viewport with Hover Zoom */}
-      <Link to={`/product/${product.slug}`} className="relative h-72 w-full overflow-hidden bg-[#F6F7F9] flex items-center justify-center p-4">
+      <Link to={`/product/${product.slug}`} className="relative h-60 sm:h-72 w-full overflow-hidden bg-[#F6F7F9] flex items-center justify-center p-4">
         <img
           src={primaryImage}
           alt={product.title}
@@ -81,11 +81,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <Heart className="w-4 h-4 fill-current" />
         </button>
 
-        {/* Quick Add Button Overlay */}
-        <div className="absolute bottom-3 left-3 right-3 flex gap-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10">
+        {/* Quick Add Button Overlay (Always accessible on touch, sleek hover on desktop) */}
+        <div className="absolute bottom-3 left-3 right-3 flex gap-2 sm:opacity-0 sm:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10">
           <button
             onClick={handleQuickAdd}
-            className="flex-1 bg-[#111111] hover:bg-[#6D5EF6] text-white py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors font-display shadow-lg"
+            className="flex-1 bg-[#111111] hover:bg-[#6D5EF6] text-white py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors font-display shadow-lg"
           >
             <ShoppingBag className="w-3.5 h-3.5" /> Quick Add
           </button>
