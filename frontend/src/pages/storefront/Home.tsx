@@ -77,7 +77,7 @@ export const Home: React.FC = () => {
               {craftedHeader.title || 'Crafted Series'}
             </h2>
             <p className="text-sm text-[#6B7280] mt-2 max-w-xl">
-              {craftedHeader.description || 'Signature EarCraft acoustic monitors engineered with 45dB Active Noise Cancellation, graphene drivers, and bespoke finishes.'}
+              {craftedHeader.description || 'Signature EarCraft acoustic monitors engineered with graphene drivers and bespoke finishes.'}
             </p>
           </div>
           <Link

@@ -33,7 +33,7 @@ export const mockCollections: Collection[] = [
     slug: 'crafted-series',
     tagline: 'Crafted to Shine. Signature Acoustic Precision.',
     hero_image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=1600&q=80',
-    description: 'Engineered with 45dB Hybrid ANC, 10mm Graphene Drivers, and space-grade materials.',
+    description: 'Engineered with 10mm Graphene Drivers and space-grade materials.',
     is_featured: true,
   },
   {
@@ -52,7 +52,7 @@ export const mockProducts: Product[] = [
     id: 'prod-crafted-drop',
     title: 'Crafted Drop',
     slug: 'crafted-drop',
-    subtitle: 'Signature Acoustic Drop Edition with 45dB Hybrid ANC',
+    subtitle: 'Signature Acoustic Drop Edition',
     description: 'The Crafted Drop features bespoke acoustic architecture and handcrafted drop styling. Engineered for crystal-clear vocals, ultra-low latency, and immersive sound.',
     story: 'Designed in our audio laboratories for trendsetters who demand acoustic precision alongside luxury jewelry design.',
     craftsmanship_details: 'Handcrafted metallic drop finish, capacitive touch controls, 36-hour total battery.',
@@ -179,7 +179,7 @@ export const mockProducts: Product[] = [
     subtitle: 'Intertwined Infinity Knot Acoustic Design',
     description: 'Symbolizing strength and infinity, the Crafted Knot blends sculptured artwork with 10mm dynamic drivers.',
     story: 'Intertwined craftsmanship designed to accent your personal style while surrounding you in rich acoustic harmony.',
-    craftsmanship_details: 'Infinity knot charm attachment, 45dB ANC, Qi wireless charging support.',
+    craftsmanship_details: 'Infinity knot charm attachment, Qi wireless charging support.',
     hsn_code: '85183000',
     gst_percentage: 18,
     barcode: '8901234567805',
@@ -238,7 +238,7 @@ export const mockProducts: Product[] = [
     id: 'prod-golden-crafted-drop',
     title: 'Golden Crafted Drop',
     slug: 'golden-crafted-drop',
-    subtitle: 'Signature Golden Acoustic Drop Edition with 45dB Hybrid ANC',
+    subtitle: 'Signature Golden Acoustic Drop Edition',
     description: 'The Golden Crafted Drop features bespoke acoustic architecture in a radiant 24K gold finish. Engineered for crystal-clear vocals, ultra-low latency, and immersive sound.',
     story: 'Designed in our audio laboratories for trendsetters who demand acoustic precision alongside luxurious golden jewelry aesthetics.',
     craftsmanship_details: 'Handcrafted 24K gold-tone drop finish, capacitive touch controls, 36-hour total battery.',
@@ -445,8 +445,8 @@ export const mockCoupons: Coupon[] = [
 export const mockBlogs: Blog[] = [
   {
     id: 'blog-1',
-    title: 'The Acoustic Engineering Behind 45dB ANC',
-    slug: 'acoustic-engineering-behind-45db-anc',
+    title: 'The Acoustic Engineering Behind Precision Audio',
+    slug: 'acoustic-engineering-behind-precision-audio',
     author: 'Dr. Julian Vance, Head of Acoustics',
     excerpt: 'How dual feedforward and feedback microphones calculate anti-waves at 192,000 samples per second.',
     content: `Active Noise Cancellation (ANC) relies on destructive sound wave interference. At EarCraft, our dual internal-external microphones capture ambient environmental noise in real-time.\n\nOur neural DSP chip calculates the exact inverted phase anti-wave, neutralizing background hum while preserving uncompressed dynamic range.`,
@@ -492,7 +492,7 @@ export const mockFAQs: FAQItem[] = [
   {
     id: 'faq-3',
     question: 'What is the difference between Crafted Series and Unisex Series?',
-    answer: 'Crafted Series focuses on signature audio engineering, graphene drivers, 45dB hybrid ANC, and bespoke materials. Unisex Series offers universal ergonomic daily comfort, ultra-light design, and versatile everyday style.',
+    answer: 'Crafted Series focuses on signature audio engineering, graphene drivers, and bespoke materials. Unisex Series offers universal ergonomic daily comfort, ultra-light design, and versatile everyday style.',
     category: 'Product Lineup',
   }
 ];
@@ -542,7 +542,7 @@ export const mockLifestyleBanner: LifestyleBannerConfig = {
 export const mockCraftedHeader: CollectionHeaderConfig = {
   badge: 'Signature Collection',
   title: 'Crafted Series',
-  description: 'Signature EarCraft acoustic monitors engineered with 45dB Active Noise Cancellation, graphene drivers, and bespoke finishes.',
+  description: 'Signature EarCraft acoustic monitors engineered with graphene drivers and bespoke finishes.',
   cta_text: 'Explore Crafted Series',
   cta_link: '/shop?series=crafted'
 };

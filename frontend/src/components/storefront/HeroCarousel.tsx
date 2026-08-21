@@ -94,7 +94,7 @@ export const HeroCarousel: React.FC = () => {
           </p>
 
           <p className="text-xs sm:text-sm text-[#6B7280] max-w-md leading-relaxed font-sans">
-            45dB Hybrid Active Noise Cancellation • 10mm Graphene Diaphragm Drivers • 40-Hour Battery Life
+            10mm Graphene Diaphragm Drivers • 40-Hour Battery Life
           </p>
 
           {/* Action Buttons */}

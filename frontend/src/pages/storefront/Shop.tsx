@@ -72,7 +72,7 @@ export const Shop: React.FC = () => {
           {selectedSeries === 'crafted' ? 'Crafted Series — Signature Audio' : selectedSeries === 'unisex' ? 'Unisex Series — Everyday Collection' : 'Crafted Series & Unisex Series'}
         </h1>
         <p className="text-xs sm:text-sm text-[#6B7280] max-w-xl mx-auto leading-relaxed">
-          Engineered for exceptional sound and everyday style. Discover 45dB Active Noise Cancellation, graphene diaphragms, and universal acoustic geometry.
+          Engineered for exceptional sound and everyday style. Discover graphene diaphragms and universal acoustic geometry.
         </p>
 
         {/* Series Switcher Tabs */}

@@ -10,7 +10,7 @@ export const BlogsPage: React.FC = () => {
       <div className="text-center max-w-xl mx-auto space-y-2">
         <span className="text-xs uppercase font-bold tracking-widest text-[#6D5EF6] font-display">Audio Science & Design</span>
         <h1 className="font-display text-4xl font-extrabold text-[#111111]">EarCraft Acoustic Journal</h1>
-        <p className="text-xs text-[#6B7280]">Insights into active noise cancellation, graphene drivers, LDAC lossless codecs, and product design.</p>
+        <p className="text-xs text-[#6B7280]">Insights into graphene drivers, LDAC lossless codecs, and product design.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

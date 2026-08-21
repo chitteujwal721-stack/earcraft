@@ -70,7 +70,7 @@ export const ProductDetail: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16 bg-[#F6F7F9] text-[#111111]">
-      
+
       {/* Breadcrumb Navigation */}
       <div className="flex items-center gap-2 text-xs text-[#6B7280] font-display">
         <Link to="/" className="hover:text-[#6D5EF6]">Home</Link>
@@ -84,7 +84,7 @@ export const ProductDetail: React.FC = () => {
 
       {/* Main Product Showcase Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        
+
         {/* Left Sticky Image Gallery */}
         <div className="lg:col-span-7 space-y-4 lg:sticky lg:top-24">
           <div className="relative h-[340px] sm:h-[450px] lg:h-[520px] rounded-3xl overflow-hidden bg-white border border-[#E5E7EB] luxury-shadow flex items-center justify-center p-4 sm:p-6 group">
@@ -103,9 +103,6 @@ export const ProductDetail: React.FC = () => {
               <span className="text-xs uppercase font-bold tracking-widest bg-[#111111] text-white px-3 py-1 rounded-full shadow-sm">
                 {product.category.name}
               </span>
-              <span className="text-xs uppercase font-bold tracking-widest bg-[#6D5EF6] text-white px-3 py-1 rounded-full shadow-sm">
-                45dB Hybrid ANC
-              </span>
             </div>
           </div>
 
@@ -118,9 +115,8 @@ export const ProductDetail: React.FC = () => {
                   setSelectedImage(img.url);
                   if (activeTab === '360') setActiveTab('specs');
                 }}
-                className={`w-20 h-20 rounded-2xl overflow-hidden border-2 transition-all shrink-0 bg-white p-1 luxury-shadow ${
-                  selectedImage === img.url && activeTab !== '360' ? 'border-[#6D5EF6]' : 'border-[#E5E7EB] opacity-70 hover:opacity-100'
-                }`}
+                className={`w-20 h-20 rounded-2xl overflow-hidden border-2 transition-all shrink-0 bg-white p-1 luxury-shadow ${selectedImage === img.url && activeTab !== '360' ? 'border-[#6D5EF6]' : 'border-[#E5E7EB] opacity-70 hover:opacity-100'
+                  }`}
               >
                 <img src={img.url} alt={img.alt_text} className="w-full h-full object-contain" />
               </button>
@@ -129,9 +125,8 @@ export const ProductDetail: React.FC = () => {
             {product.three_sixty_images && (
               <button
                 onClick={() => setActiveTab('360')}
-                className={`w-20 h-20 rounded-2xl border-2 flex flex-col items-center justify-center gap-1 transition-all shrink-0 bg-white luxury-shadow ${
-                  activeTab === '360' ? 'border-[#6D5EF6] text-[#6D5EF6]' : 'border-[#E5E7EB] text-[#6B7280]'
-                }`}
+                className={`w-20 h-20 rounded-2xl border-2 flex flex-col items-center justify-center gap-1 transition-all shrink-0 bg-white luxury-shadow ${activeTab === '360' ? 'border-[#6D5EF6] text-[#6D5EF6]' : 'border-[#E5E7EB] text-[#6B7280]'
+                  }`}
               >
                 <RotateCw className="w-5 h-5 text-[#6D5EF6]" />
                 <span className="text-[10px] font-bold uppercase font-display">360° View</span>
@@ -179,11 +174,10 @@ export const ProductDetail: React.FC = () => {
               </span>
             </div>
 
-            <span className={`text-xs font-bold px-3 py-1 rounded-full font-display ${
-              (selectedVariant?.stock_quantity || 0) > 0
-                ? 'bg-emerald-50 text-emerald-600 border border-emerald-200'
-                : 'bg-red-50 text-red-600 border border-red-200'
-            }`}>
+            <span className={`text-xs font-bold px-3 py-1 rounded-full font-display ${(selectedVariant?.stock_quantity || 0) > 0
+              ? 'bg-emerald-50 text-emerald-600 border border-emerald-200'
+              : 'bg-red-50 text-red-600 border border-red-200'
+              }`}>
               {(selectedVariant?.stock_quantity || 0) > 0 ? `In Stock (${selectedVariant?.stock_quantity} left)` : 'Sold Out'}
             </span>
           </div>
@@ -199,11 +193,10 @@ export const ProductDetail: React.FC = () => {
                   <button
                     key={variant.id}
                     onClick={() => setSelectedVariant(variant)}
-                    className={`p-3.5 rounded-2xl border text-left flex items-center gap-3 transition-all ${
-                      selectedVariant?.id === variant.id
-                        ? 'border-[#6D5EF6] bg-white text-[#111111] violet-shadow-sm font-bold'
-                        : 'border-[#E5E7EB] bg-white text-[#6B7280] hover:border-[#111111]'
-                    }`}
+                    className={`p-3.5 rounded-2xl border text-left flex items-center gap-3 transition-all ${selectedVariant?.id === variant.id
+                      ? 'border-[#6D5EF6] bg-white text-[#111111] violet-shadow-sm font-bold'
+                      : 'border-[#E5E7EB] bg-white text-[#6B7280] hover:border-[#111111]'
+                      }`}
                   >
                     <span
                       className="w-4 h-4 rounded-full border border-[#E5E7EB] shrink-0 shadow-inner"
@@ -240,11 +233,10 @@ export const ProductDetail: React.FC = () => {
 
               <button
                 onClick={() => dispatch(toggleWishlist(product))}
-                className={`p-3.5 rounded-2xl border transition-all luxury-shadow ${
-                  isWishlisted
-                    ? 'bg-red-500 text-white border-red-500'
-                    : 'border-[#E5E7EB] bg-white text-[#6B7280] hover:text-[#6D5EF6]'
-                }`}
+                className={`p-3.5 rounded-2xl border transition-all luxury-shadow ${isWishlisted
+                  ? 'bg-red-500 text-white border-red-500'
+                  : 'border-[#E5E7EB] bg-white text-[#6B7280] hover:text-[#6D5EF6]'
+                  }`}
                 title="Wishlist"
               >
                 <Heart className="w-5 h-5 fill-current" />
@@ -295,43 +287,26 @@ export const ProductDetail: React.FC = () => {
       {/* Specifications, Features, Included, Delivery, Warranty & Reviews Tabs */}
       <div className="bg-white rounded-3xl p-8 border border-[#E5E7EB] luxury-shadow space-y-8">
         <div className="flex items-center gap-6 border-b border-[#E5E7EB] pb-4 overflow-x-auto font-display">
-          <button
-            onClick={() => setActiveTab('specs')}
-            className={`text-xs font-bold uppercase tracking-widest pb-2 border-b-2 transition-all shrink-0 ${
-              activeTab === 'specs' ? 'border-[#6D5EF6] text-[#6D5EF6]' : 'border-transparent text-[#6B7280] hover:text-[#111111]'
-            }`}
-          >
-            Specifications & Details
-          </button>
+
           <button
             onClick={() => setActiveTab('included')}
-            className={`text-xs font-bold uppercase tracking-widest pb-2 border-b-2 transition-all shrink-0 ${
-              activeTab === 'included' ? 'border-[#6D5EF6] text-[#6D5EF6]' : 'border-transparent text-[#6B7280] hover:text-[#111111]'
-            }`}
+            className={`text-xs font-bold uppercase tracking-widest pb-2 border-b-2 transition-all shrink-0 ${activeTab === 'included' ? 'border-[#6D5EF6] text-[#6D5EF6]' : 'border-transparent text-[#6B7280] hover:text-[#111111]'
+              }`}
           >
             What's Included
           </button>
-          <button
-            onClick={() => setActiveTab('delivery')}
-            className={`text-xs font-bold uppercase tracking-widest pb-2 border-b-2 transition-all shrink-0 ${
-              activeTab === 'delivery' ? 'border-[#6D5EF6] text-[#6D5EF6]' : 'border-transparent text-[#6B7280] hover:text-[#111111]'
-            }`}
-          >
-            Delivery & Transit
-          </button>
+
           <button
             onClick={() => setActiveTab('warranty')}
-            className={`text-xs font-bold uppercase tracking-widest pb-2 border-b-2 transition-all shrink-0 ${
-              activeTab === 'warranty' ? 'border-[#6D5EF6] text-[#6D5EF6]' : 'border-transparent text-[#6B7280] hover:text-[#111111]'
-            }`}
+            className={`text-xs font-bold uppercase tracking-widest pb-2 border-b-2 transition-all shrink-0 ${activeTab === 'warranty' ? 'border-[#6D5EF6] text-[#6D5EF6]' : 'border-transparent text-[#6B7280] hover:text-[#111111]'
+              }`}
           >
             6-Month Warranty
           </button>
           <button
             onClick={() => setActiveTab('reviews')}
-            className={`text-xs font-bold uppercase tracking-widest pb-2 border-b-2 transition-all shrink-0 ${
-              activeTab === 'reviews' ? 'border-[#6D5EF6] text-[#6D5EF6]' : 'border-transparent text-[#6B7280] hover:text-[#111111]'
-            }`}
+            className={`text-xs font-bold uppercase tracking-widest pb-2 border-b-2 transition-all shrink-0 ${activeTab === 'reviews' ? 'border-[#6D5EF6] text-[#6D5EF6]' : 'border-transparent text-[#6B7280] hover:text-[#111111]'
+              }`}
           >
             Reviews ({product.reviews.length})
           </button>
@@ -354,24 +329,12 @@ export const ProductDetail: React.FC = () => {
             <h4 className="text-xs uppercase font-bold text-[#111111] font-display">Inside the Luxury Box</h4>
             <ul className="space-y-2 text-xs text-[#6B7280]">
               <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#6D5EF6]" /> 1x EarCraft Wireless Acoustic Earbuds</li>
-              <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#6D5EF6]" /> 1x Qi Wireless Charging Case</li>
-              <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#6D5EF6]" /> 3x Hypoallergenic Silicone Eartips (S, M, L)</li>
-              <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#6D5EF6]" /> 1x Braided USB-C Fast Charging Cable</li>
-              <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#6D5EF6]" /> 1x Official EarCraft Certificate of Authenticity & 6-Month Warranty Card</li>
+
             </ul>
           </div>
         )}
 
-        {activeTab === 'delivery' && (
-          <div className="max-w-xl space-y-3 text-xs text-[#6B7280]">
-            <h4 className="text-xs uppercase font-bold text-[#111111] font-display">Complimentary Insured Air Express</h4>
-            <p>Orders are dispatched within 24 hours from our regional acoustic fulfillment hubs. Tracking details are automatically assigned and sent via SMS and Email.</p>
-            <div className="p-4 bg-[#F6F7F9] rounded-xl border border-[#E5E7EB] flex items-center justify-between text-[#111111] font-display font-bold">
-              <span>Standard Metro Delivery: 2-3 Business Days</span>
-              <span className="text-[#6D5EF6]">FREE</span>
-            </div>
-          </div>
-        )}
+
 
         {activeTab === 'warranty' && (
           <div className="max-w-xl">

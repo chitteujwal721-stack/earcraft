@@ -73,7 +73,7 @@ export const Footer: React.FC = () => {
             </span>
           </Link>
           <p className="text-xs text-[#6B7280] leading-relaxed max-w-md">
-            Where style meets sound perfection. Redefining modern luxury audio through graphene acoustics, 45dB noise cancellation, and minimal design aesthetics.
+            Where style meets sound perfection. Redefining modern luxury audio through graphene acoustics and minimal design aesthetics.
           </p>
 
           {/* Newsletter Box */}

@@ -13,7 +13,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
   return (
     <div className="absolute top-full left-0 w-full glass-card border-t border-b border-[#262626] shadow-2xl py-8 px-12 z-50 animate-in fade-in slide-in-from-top-2 duration-300">
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-8">
-        
+
         {/* Categories Column */}
         <div className="col-span-4 border-r border-[#262626] pr-8">
           <h4 className="text-xs uppercase font-bold text-[#B38CFF] tracking-widest mb-4">
@@ -81,7 +81,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex items-end p-3">
               <span className="text-xs font-display text-[#B38CFF] font-semibold flex items-center gap-1">
-                <Zap className="w-3.5 h-3.5" /> 45dB Active Noise Cancellation
+                <Zap className="w-3.5 h-3.5" />
               </span>
             </div>
           </div>

@@ -273,7 +273,7 @@ export const CategoryProductsPage: React.FC = () => {
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Subtitle</label>
                 <input
                   type="text"
-                  placeholder="e.g. 45dB Hybrid Active Noise Cancellation"
+                  placeholder="e.g. Signature Acoustic Edition"
                   value={formData.subtitle}
                   onChange={e => setFormData({ ...formData, subtitle: e.target.value })}
                   className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-[#6D5EF6]"
