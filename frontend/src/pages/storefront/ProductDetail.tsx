@@ -21,6 +21,7 @@ import {
 
 import { WhatsAppIcon } from '../../components/common/WhatsAppIcon';
 import { checkoutService } from '../../services/checkoutService';
+import { WarrantyCard } from '../../components/storefront/WarrantyCard';
 
 export const ProductDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -36,7 +37,7 @@ export const ProductDetail: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string>(product?.images[0]?.url || '');
   const [selectedVariant, setSelectedVariant] = useState(product?.variants[0]);
   const [quantity, setQuantity] = useState<number>(1);
-  const [activeTab, setActiveTab] = useState<'specs' | 'included' | 'delivery' | '360' | 'reviews'>('specs');
+  const [activeTab, setActiveTab] = useState<'specs' | 'included' | 'delivery' | '360' | 'reviews' | 'warranty'>('specs');
   const [checkoutError, setCheckoutError] = useState<string>('');
 
   if (!product) return null;
@@ -280,15 +281,18 @@ export const ProductDetail: React.FC = () => {
             </div>
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-[#6D5EF6] shrink-0" />
-              <span>2-Year Hardware Warranty</span>
+              <span>6-Month Hardware Warranty</span>
             </div>
           </div>
+
+          {/* Theme Warranty Card */}
+          <WarrantyCard className="mt-4" />
 
         </div>
 
       </div>
 
-      {/* Specifications, Features, Included, Delivery & Reviews Tabs */}
+      {/* Specifications, Features, Included, Delivery, Warranty & Reviews Tabs */}
       <div className="bg-white rounded-3xl p-8 border border-[#E5E7EB] luxury-shadow space-y-8">
         <div className="flex items-center gap-6 border-b border-[#E5E7EB] pb-4 overflow-x-auto font-display">
           <button
@@ -314,6 +318,14 @@ export const ProductDetail: React.FC = () => {
             }`}
           >
             Delivery & Transit
+          </button>
+          <button
+            onClick={() => setActiveTab('warranty')}
+            className={`text-xs font-bold uppercase tracking-widest pb-2 border-b-2 transition-all shrink-0 ${
+              activeTab === 'warranty' ? 'border-[#6D5EF6] text-[#6D5EF6]' : 'border-transparent text-[#6B7280] hover:text-[#111111]'
+            }`}
+          >
+            6-Month Warranty
           </button>
           <button
             onClick={() => setActiveTab('reviews')}
@@ -345,7 +357,7 @@ export const ProductDetail: React.FC = () => {
               <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#6D5EF6]" /> 1x Qi Wireless Charging Case</li>
               <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#6D5EF6]" /> 3x Hypoallergenic Silicone Eartips (S, M, L)</li>
               <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#6D5EF6]" /> 1x Braided USB-C Fast Charging Cable</li>
-              <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#6D5EF6]" /> 1x Official EarCraft Certificate of Authenticity & 2-Year Warranty Card</li>
+              <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#6D5EF6]" /> 1x Official EarCraft Certificate of Authenticity & 6-Month Warranty Card</li>
             </ul>
           </div>
         )}
@@ -358,6 +370,12 @@ export const ProductDetail: React.FC = () => {
               <span>Standard Metro Delivery: 2-3 Business Days</span>
               <span className="text-[#6D5EF6]">FREE</span>
             </div>
+          </div>
+        )}
+
+        {activeTab === 'warranty' && (
+          <div className="max-w-xl">
+            <WarrantyCard />
           </div>
         )}
 
@@ -382,6 +400,11 @@ export const ProductDetail: React.FC = () => {
             )}
           </div>
         )}
+      </div>
+
+      {/* Full-width Official Warranty Section below Product Details */}
+      <div className="my-12">
+        <WarrantyCard />
       </div>
 
       {/* Related Products */}
