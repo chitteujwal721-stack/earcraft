@@ -89,7 +89,7 @@ def seed():
             'category': cat_crafted,
             'collection': col_crafted,
             'title': 'EarCraft Apex Pro (Crafted Series)',
-            'subtitle': '45dB Hybrid Active Noise Cancellation & 10mm Graphene Drivers',
+            'subtitle': ' ',
             'description': 'The flagship of the Crafted Series fuses bespoke acoustic architecture with 45dB Active Noise Cancellation.',
             'base_price': 19900.00,
             'compare_at_price': 24900.00,
@@ -215,7 +215,7 @@ def seed():
             'category': cat_crafted,
             'collection': col_crafted,
             'title': 'Golden Crafted Drop',
-            'subtitle': 'Signature Golden Acoustic Drop Edition with 45dB Hybrid ANC',
+            'subtitle': '',
             'description': 'The Golden Crafted Drop features bespoke acoustic architecture in a radiant 24K gold finish.',
             'base_price': 1599.00,
             'compare_at_price': 1999.00,
@@ -258,7 +258,57 @@ def seed():
         ProductImage.objects.create(product=p7, url='/goldencolor/golden_crafted_florat.png', alt_text='Golden Crafted Florat', is_primary=True, order=1)
         ProductVariant.objects.create(product=p7, sku='EC-CRF-GLD-FLRT', name='24K Golden Floral', material='24K Gold Anodized Alloy', color='#E6CA65', price=1599.00, stock_quantity=18)
 
-    print(f"Products seeded: '{p1.title}', '{p2.title}', '{p3.title}', '{p4.title}', '{p5.title}', '{p6.title}', '{p7.title}'")
+    p8, p8_created = Product.objects.get_or_create(
+        slug='golden-crafted-knot',
+        defaults={
+            'category': cat_crafted,
+            'collection': col_crafted,
+            'title': 'Golden Crafted Knot',
+            'subtitle': 'Intertwined 24K Gold Infinity Knot Acoustic Edition',
+            'description': 'Featuring precision 24K gold-plated infinity knot acoustic casing and high-fidelity sound stage output.',
+            'base_price': 1599.00,
+            'compare_at_price': 1999.00,
+            'hsn_code': '85183000',
+            'gst_percentage': 18.00,
+            'barcode': '8901234567809',
+            'status': 'ACTIVE',
+            'is_featured': True,
+            'is_new_arrival': True,
+            'is_best_seller': True,
+            'avg_rating': 5.00,
+            'review_count': 86,
+        }
+    )
+    if p8_created:
+        ProductImage.objects.create(product=p8, url='/goldencolor/golden_crafted_knot.png', alt_text='Golden Crafted Knot', is_primary=True, order=1)
+        ProductVariant.objects.create(product=p8, sku='EC-CRF-GLD-KNOT', name='24K Golden Knot', material='24K Gold Plated Alloy', color='#D4AF37', price=1599.00, stock_quantity=25)
+
+    p9, p9_created = Product.objects.get_or_create(
+        slug='golden-fly',
+        defaults={
+            'category': cat_crafted,
+            'collection': col_crafted,
+            'title': 'Golden Fly',
+            'subtitle': 'Aerodynamic Winged 24K Gold Acoustic Edition',
+            'description': 'Inspired by aerodynamic kinetics, the Golden Fly features bespoke 24K gold-plated winged acoustic geometry and high-fidelity sound stage output.',
+            'base_price': 1599.00,
+            'compare_at_price': 1999.00,
+            'hsn_code': '85183000',
+            'gst_percentage': 18.00,
+            'barcode': '8901234567810',
+            'status': 'ACTIVE',
+            'is_featured': True,
+            'is_new_arrival': True,
+            'is_best_seller': True,
+            'avg_rating': 5.00,
+            'review_count': 74,
+        }
+    )
+    if p9_created:
+        ProductImage.objects.create(product=p9, url='/goldencolor/golden_fly.png', alt_text='Golden Fly', is_primary=True, order=1)
+        ProductVariant.objects.create(product=p9, sku='EC-CRF-GLD-FLY', name='24K Golden Fly', material='24K Gold Plated Alloy', color='#D4AF37', price=1599.00, stock_quantity=20)
+
+    print(f"Products seeded: '{p1.title}', '{p2.title}', '{p3.title}', '{p4.title}', '{p5.title}', '{p6.title}', '{p7.title}', '{p8.title}', '{p9.title}'")
     print(f"Crafted Series product count: {cat_crafted.product_count}")
     print(f"Unisex Series product count: {cat_unisex.product_count}")
 

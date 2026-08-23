@@ -87,7 +87,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ onClose }) => {
           </div>
           <div>
             <h5 className="text-sm font-bold text-white font-display">EarCraft Apex Pro Flagship</h5>
-            <p className="text-xs text-[#A9A9A9] mt-1">10mm Graphene Drivers with 40-Hour Combined Playback.</p>
+            <p className="text-xs text-[#A9A9A9] mt-1">10mm Graphene Drivers with 30-Hour Combined Playback.</p>
             <Link
               to="/product/earcraft-apex-pro-wireless-earbuds"
               onClick={onClose}

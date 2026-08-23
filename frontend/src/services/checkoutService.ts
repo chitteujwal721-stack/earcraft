@@ -7,11 +7,54 @@ export interface WhatsAppCheckoutResult {
   error?: string;
 }
 
+export interface CustomerDetails {
+  name: string;
+  phone?: string;
+  address: string;
+  city: string;
+  district: string;
+  state: string;
+  pincode: string;
+}
+
+export const getSavedCustomerDetails = (): CustomerDetails => {
+  try {
+    const saved = localStorage.getItem('earcraft_customer_details');
+    if (saved) {
+      return JSON.parse(saved);
+    }
+  } catch (e) {
+    console.error('Error reading saved customer details:', e);
+  }
+  return {
+    name: '',
+    phone: '',
+    address: '',
+    city: '',
+    district: '',
+    state: '',
+    pincode: '',
+  };
+};
+
+export const saveCustomerDetails = (details: CustomerDetails): void => {
+  try {
+    localStorage.setItem('earcraft_customer_details', JSON.stringify(details));
+  } catch (e) {
+    console.error('Error saving customer details:', e);
+  }
+};
+
 export const checkoutService = {
   /**
    * Generates a WhatsApp message for a single product (Buy Now flow) and triggers redirect.
    */
-  buyNowWhatsApp(product: Product, variant: ProductVariant, quantity: number = 1): WhatsAppCheckoutResult {
+  buyNowWhatsApp(
+    product: Product,
+    variant: ProductVariant,
+    quantity: number = 1,
+    customer?: CustomerDetails
+  ): WhatsAppCheckoutResult {
     try {
       if (!product || !variant) {
         return { success: false, error: 'Product or variant details are missing.' };
@@ -25,21 +68,52 @@ export const checkoutService = {
         return { success: false, error: 'EarCraft WhatsApp contact number is not configured.' };
       }
 
-      const price = variant.price || product.base_price;
-      const formattedPrice = price.toLocaleString('en-IN');
+      if (customer) {
+        saveCustomerDetails(customer);
+      }
 
-      const message = [
+      const price = variant.price || product.base_price;
+      const totalAmount = price * quantity;
+      const formattedPrice = price.toLocaleString('en-IN');
+      const formattedTotal = totalAmount.toLocaleString('en-IN');
+
+      const messageParts: string[] = [
         `Hi EarCraft! 👋`,
         ``,
-        `I would like to order:`,
+        `I would like to place an order:`,
         ``,
-        `Product: ${product.title}`,
-        `Quantity: ${quantity}`,
-        `Price: ₹${formattedPrice}`,
-        ``,
-        `Please confirm my order.`
-      ].join('\n');
+      ];
 
+      if (customer && (customer.name || customer.address || customer.city)) {
+        messageParts.push(
+          `CUSTOMER DETAILS`,
+          `━━━━━━━━━━━━━━━━`,
+          `NAME: ${customer.name || ''}`,
+          `PHONE: ${customer.phone || ''}`,
+          `ADDRESS: ${customer.address || ''}`,
+          `CITY: ${customer.city || ''}`,
+          `DISTRICT: ${customer.district || ''}`,
+          `STATE: ${customer.state || ''}`,
+          `PINCODE: ${customer.pincode || ''}`,
+          ``
+        );
+      }
+
+      messageParts.push(
+        `ORDER DETAILS`,
+        `━━━━━━━━━━━━━━━━`,
+        `Product: ${product.title}`,
+        `Edition: ${variant.name}`,
+        `Quantity: ${quantity}`,
+        `Unit Price: ₹${formattedPrice}`,
+        `Total Amount: ₹${formattedTotal}`,
+        ``,
+        `━━━━━━━━━━━━━━━━`,
+        `Please confirm my order.`,
+        `Thank you!`
+      );
+
+      const message = messageParts.join('\n');
       const url = buildWhatsAppUrl(message);
       
       // Open WhatsApp Web/App in a new tab
@@ -55,7 +129,11 @@ export const checkoutService = {
   /**
    * Generates a WhatsApp message for all items currently in the cart and triggers redirect.
    */
-  cartCheckoutWhatsApp(items: CartItem[], appliedCoupon?: Coupon | null): WhatsAppCheckoutResult {
+  cartCheckoutWhatsApp(
+    items: CartItem[],
+    appliedCoupon?: Coupon | null,
+    customer?: CustomerDetails
+  ): WhatsAppCheckoutResult {
     try {
       if (!items || items.length === 0) {
         return { success: false, error: 'Your cart is empty.' };
@@ -63,6 +141,10 @@ export const checkoutService = {
 
       if (!WHATSAPP_CONFIG.phoneNumber) {
         return { success: false, error: 'EarCraft WhatsApp contact number is not configured.' };
+      }
+
+      if (customer) {
+        saveCustomerDetails(customer);
       }
 
       let totalItems = 0;
@@ -75,7 +157,7 @@ export const checkoutService = {
         rawSubtotal += itemSubtotal;
 
         return [
-          `${index + 1}. ${item.product.title}`,
+          `${index + 1}. ${item.product.title} (${item.variant?.name || 'Standard'})`,
           `Quantity: ${item.quantity}`,
           `Price: ₹${itemPrice.toLocaleString('en-IN')}`,
           `Subtotal: ₹${itemSubtotal.toLocaleString('en-IN')}`
@@ -96,20 +178,36 @@ export const checkoutService = {
 
       const finalAmount = Math.max(0, rawSubtotal - discount);
 
-      const messageParts = [
+      const messageParts: string[] = [
         `Hi EarCraft! 👋`,
         ``,
         `I would like to place an order.`,
         ``,
+      ];
+
+      if (customer && (customer.name || customer.address || customer.city)) {
+        messageParts.push(
+          `CUSTOMER DETAILS`,
+          `━━━━━━━━━━━━━━━━`,
+          `NAME: ${customer.name || ''}`,
+          `PHONE: ${customer.phone || ''}`,
+          `ADDRESS: ${customer.address || ''}`,
+          `CITY: ${customer.city || ''}`,
+          `DISTRICT: ${customer.district || ''}`,
+          `STATE: ${customer.state || ''}`,
+          `PINCODE: ${customer.pincode || ''}`,
+          ``
+        );
+      }
+
+      messageParts.push(
         `ORDER DETAILS`,
         `━━━━━━━━━━━━━━━━`,
-        ``,
         orderLines.join('\n\n'),
         ``,
         `━━━━━━━━━━━━━━━━`,
-        ``,
-        `Total Items: ${totalItems}`,
-      ];
+        `Total Items: ${totalItems}`
+      );
 
       if (discount > 0 && appliedCoupon) {
         messageParts.push(`Subtotal: ₹${rawSubtotal.toLocaleString('en-IN')}`);
@@ -117,9 +215,9 @@ export const checkoutService = {
       }
 
       messageParts.push(`Total Amount: ₹${finalAmount.toLocaleString('en-IN')}`);
+      messageParts.push(`━━━━━━━━━━━━━━━━`);
       messageParts.push(``);
       messageParts.push(`Please confirm my order.`);
-      messageParts.push(``);
       messageParts.push(`Thank you!`);
 
       const message = messageParts.join('\n');

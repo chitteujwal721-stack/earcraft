@@ -90,9 +90,6 @@ export const Navbar: React.FC = () => {
             <Link to="/shop?series=crafted" className="text-xs font-bold uppercase tracking-widest text-[#6B7280] hover:text-[#6D5EF6] transition-colors">
               Crafted Series
             </Link>
-            <Link to="/contact" className="text-xs font-bold uppercase tracking-widest text-[#6B7280] hover:text-[#111111] transition-colors">
-              Contact
-            </Link>
             <Link to="/about-us" className="text-xs font-bold uppercase tracking-widest text-[#6B7280] hover:text-[#111111] transition-colors">
               About Us
             </Link>
@@ -164,7 +161,6 @@ export const Navbar: React.FC = () => {
 
             <div className="pt-6 border-t border-[#E5E7EB] space-y-4">
               <Link to="/about-us" className="block text-base font-display text-[#111111]">About Us</Link>
-              <Link to="/contact" className="block text-base font-display text-[#111111]">Contact Support</Link>
             </div>
           </div>
         </div>

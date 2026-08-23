@@ -35,7 +35,7 @@ export const Footer: React.FC = () => {
             <BatteryCharging className="w-5 h-5" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-[#111111] font-display">40-Hour Playback</h4>
+            <h4 className="text-sm font-bold text-[#111111] font-display">30-Hour Playback</h4>
             <p className="text-xs text-[#6B7280] mt-1">8.5 hours per charge + Type-C / Qi wireless charging case.</p>
           </div>
         </div>
@@ -113,14 +113,13 @@ export const Footer: React.FC = () => {
             <li><Link to="/shop?series=crafted" className="hover:text-[#6D5EF6] transition-colors">Crafted Series — Premium Collection</Link></li>
             <li><Link to="/shop?series=unisex" className="hover:text-[#6D5EF6] transition-colors">Unisex Series — Everyday Collection</Link></li>
             <li><Link to="/about-us" className="hover:text-[#6D5EF6] transition-colors">About EarCraft</Link></li>
-            <li><Link to="/contact" className="hover:text-[#6D5EF6] transition-colors">Contact Us</Link></li>
           </ul>
         </div>
 
         {/* Column 3: Customer Support */}
         <div className="lg:col-span-4 space-y-4">
           <h4 className="text-xs uppercase font-bold tracking-widest text-[#111111] font-display">Customer Support</h4>
-          
+
           <div className="p-4 bg-[#F6F7F9] rounded-2xl border border-[#E5E7EB] luxury-shadow-sm">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#6D5EF6]/10 flex items-center justify-center text-[#6D5EF6] shrink-0">

@@ -20,8 +20,9 @@ import {
 } from 'lucide-react';
 
 import { WhatsAppIcon } from '../../components/common/WhatsAppIcon';
-import { checkoutService } from '../../services/checkoutService';
+import { checkoutService, CustomerDetails } from '../../services/checkoutService';
 import { WarrantyCard } from '../../components/storefront/WarrantyCard';
+import { CustomerDetailsModal } from '../../components/storefront/CustomerDetailsModal';
 
 export const ProductDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -39,6 +40,7 @@ export const ProductDetail: React.FC = () => {
   const [quantity, setQuantity] = useState<number>(1);
   const [activeTab, setActiveTab] = useState<'specs' | 'included' | 'delivery' | '360' | 'reviews' | 'warranty'>('specs');
   const [checkoutError, setCheckoutError] = useState<string>('');
+  const [isCustomerModalOpen, setIsCustomerModalOpen] = useState<boolean>(false);
 
   if (!product) return null;
 
@@ -52,17 +54,28 @@ export const ProductDetail: React.FC = () => {
     }
   };
 
-  const handleBuyNow = () => {
+  const handleOpenBuyNowModal = () => {
     setCheckoutError('');
     const targetVariant = selectedVariant || product.variants[0];
     if (!targetVariant) {
       setCheckoutError('Please select a product variant.');
       return;
     }
+    setIsCustomerModalOpen(true);
+  };
 
-    const res = checkoutService.buyNowWhatsApp(product, targetVariant, quantity);
+  const handleConfirmBuyNowWhatsApp = (details: CustomerDetails) => {
+    const targetVariant = selectedVariant || product.variants[0];
+    if (!targetVariant) {
+      setCheckoutError('Please select a product variant.');
+      return;
+    }
+
+    const res = checkoutService.buyNowWhatsApp(product, targetVariant, quantity, details);
     if (!res.success && res.error) {
       setCheckoutError(res.error);
+    } else {
+      setIsCustomerModalOpen(false);
     }
   };
 
@@ -257,7 +270,7 @@ export const ProductDetail: React.FC = () => {
                 <ShoppingBag className="w-4 h-4 text-[#6D5EF6]" /> Add to Cart
               </button>
               <button
-                onClick={handleBuyNow}
+                onClick={handleOpenBuyNowModal}
                 className="bg-[#25D366] hover:bg-[#20bd5a] text-white py-4 rounded-full font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all font-display shadow-xl"
               >
                 <WhatsAppIcon className="w-4 h-4 text-white shrink-0" /> Buy Now on WhatsApp
@@ -381,6 +394,20 @@ export const ProductDetail: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Customer Delivery Details Modal */}
+      <CustomerDetailsModal
+        isOpen={isCustomerModalOpen}
+        onClose={() => setIsCustomerModalOpen(false)}
+        onConfirm={handleConfirmBuyNowWhatsApp}
+        title="Delivery & Contact Details"
+        subtitle="Please provide your address details to proceed with your WhatsApp order."
+        orderSummary={{
+          totalAmount: currentPrice * quantity,
+          itemCount: quantity,
+          title: `${product.title} (${selectedVariant?.name || 'Standard'}) × ${quantity}`
+        }}
+      />
 
     </div>
   );

@@ -5,7 +5,8 @@ import { toggleCartDrawer, removeFromCart, updateQuantity, applyCoupon, removeCo
 import { X, Trash2, Plus, Minus, Tag, Sparkles, ShieldCheck } from 'lucide-react';
 import { mockCoupons } from '../../services/mockData';
 import { WhatsAppIcon } from '../common/WhatsAppIcon';
-import { checkoutService } from '../../services/checkoutService';
+import { checkoutService, CustomerDetails } from '../../services/checkoutService';
+import { CustomerDetailsModal } from './CustomerDetailsModal';
 
 export const CartDrawer: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -15,6 +16,7 @@ export const CartDrawer: React.FC = () => {
   const [couponCode, setCouponCode] = useState('');
   const [couponError, setCouponError] = useState('');
   const [cartError, setCartError] = useState('');
+  const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
 
   if (!isOpen) return null;
 
@@ -32,6 +34,8 @@ export const CartDrawer: React.FC = () => {
     }
   }
 
+  const finalTotal = Math.max(0, subtotal - discount);
+
   const handleApplyCoupon = (e: React.FormEvent) => {
     e.preventDefault();
     setCouponError('');
@@ -48,15 +52,22 @@ export const CartDrawer: React.FC = () => {
     }
   };
 
-  const handleProceedToOrder = () => {
+  const handleOpenCheckoutModal = () => {
     setCartError('');
     if (items.length === 0) {
       setCartError('Your cart is empty.');
       return;
     }
-    const res = checkoutService.cartCheckoutWhatsApp(items, appliedCoupon);
+    setIsCustomerModalOpen(true);
+  };
+
+  const handleConfirmWhatsAppOrder = (details: CustomerDetails) => {
+    const res = checkoutService.cartCheckoutWhatsApp(items, appliedCoupon, details);
     if (!res.success && res.error) {
       setCartError(res.error);
+    } else {
+      setIsCustomerModalOpen(false);
+      dispatch(toggleCartDrawer(false));
     }
   };
 
@@ -213,17 +224,41 @@ export const CartDrawer: React.FC = () => {
               )}
 
               <button
-                onClick={handleProceedToOrder}
+                onClick={handleOpenCheckoutModal}
                 className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-4 rounded-full font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all mt-4 shadow-xl"
               >
                 <WhatsAppIcon className="w-4 h-4 text-white shrink-0" />
                 <span>Proceed to Order on WhatsApp</span>
               </button>
+
+              <div className="text-center pt-2">
+                <Link
+                  to="/checkout"
+                  onClick={() => dispatch(toggleCartDrawer(false))}
+                  className="text-[11px] text-[#6B7280] hover:text-[#6D5EF6] font-semibold underline underline-offset-4"
+                >
+                  Or proceed to full Checkout page
+                </Link>
+              </div>
             </div>
           )}
 
         </div>
       </div>
+
+      {/* Customer Delivery Details Modal */}
+      <CustomerDetailsModal
+        isOpen={isCustomerModalOpen}
+        onClose={() => setIsCustomerModalOpen(false)}
+        onConfirm={handleConfirmWhatsAppOrder}
+        title="Delivery & Contact Details"
+        subtitle="Please provide your address details to proceed with your WhatsApp order."
+        orderSummary={{
+          totalAmount: finalTotal,
+          itemCount: items.reduce((acc, curr) => acc + curr.quantity, 0),
+          title: `Cart Checkout (${items.length} product${items.length > 1 ? 's' : ''})`
+        }}
+      />
     </div>
   );
 };

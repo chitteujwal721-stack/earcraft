@@ -46,7 +46,7 @@ export const HeroCarousel: React.FC = () => {
 
   return (
     <div className="relative min-h-[580px] sm:min-h-[720px] lg:h-screen w-full overflow-hidden bg-[#F6F7F9] flex items-center py-12 sm:py-24 border-b border-[#E5E7EB]">
-      
+
       {/* Soft Ambient Light Glow Following Cursor */}
       <div
         className="absolute inset-0 pointer-events-none transition-transform duration-300 ease-out z-0"
@@ -79,7 +79,7 @@ export const HeroCarousel: React.FC = () => {
       {/* Hero Content Overlay */}
       <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 z-20">
         <div className="max-w-2xl space-y-4 sm:space-y-6">
-          
+
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#E5E7EB] text-[#6D5EF6] text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-[#6D5EF6] animate-pulse shrink-0" />
             <span>EarCraft Luxury Audio Electronics</span>
@@ -94,7 +94,7 @@ export const HeroCarousel: React.FC = () => {
           </p>
 
           <p className="text-xs sm:text-sm text-[#6B7280] max-w-md leading-relaxed font-sans">
-            10mm Graphene Diaphragm Drivers • 40-Hour Battery Life
+            10mm Graphene Diaphragm Drivers • 30-Hour Battery Life
           </p>
 
           {/* Action Buttons */}

@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { clearCart } from '../../store/cartSlice';
 import { ShieldCheck, CreditCard, Lock, CheckCircle2, ArrowRight, ShoppingBag } from 'lucide-react';
 import { WhatsAppIcon } from '../../components/common/WhatsAppIcon';
-import { checkoutService } from '../../services/checkoutService';
+import { checkoutService, getSavedCustomerDetails } from '../../services/checkoutService';
 
 export const Checkout: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -13,16 +13,19 @@ export const Checkout: React.FC = () => {
   const { items, appliedCoupon } = useAppSelector(state => state.cart);
   const { user } = useAppSelector(state => state.auth);
 
+  const savedDetails = getSavedCustomerDetails();
+
   const [paymentMethod, setPaymentMethod] = useState<'WHATSAPP' | 'RAZORPAY' | 'STRIPE' | 'COD'>('WHATSAPP');
   const [formData, setFormData] = useState({
-    name: user ? `${user.first_name} ${user.last_name}` : 'Victoria Sterling',
+    name: savedDetails.name || (user ? `${user.first_name} ${user.last_name}`.trim() : 'Victoria Sterling'),
     email: user ? user.email : 'victoria@sterlingluxe.com',
-    phone: user?.phone || '+91 98765 43210',
-    street: 'Penthouse A, Palladium Towers, High Street Phoenix',
-    city: 'Mumbai',
-    state: 'Maharashtra',
+    phone: savedDetails.phone || user?.phone || '+91 98765 43210',
+    street: savedDetails.address || 'Penthouse A, Palladium Towers, High Street Phoenix',
+    city: savedDetails.city || 'Mumbai',
+    district: savedDetails.district || 'Mumbai Suburban',
+    state: savedDetails.state || 'Maharashtra',
     country: 'India',
-    postal_code: '400013',
+    postal_code: savedDetails.pincode || '400013',
   });
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -55,7 +58,15 @@ export const Checkout: React.FC = () => {
     }
 
     if (paymentMethod === 'WHATSAPP') {
-      const res = checkoutService.cartCheckoutWhatsApp(items, appliedCoupon);
+      const res = checkoutService.cartCheckoutWhatsApp(items, appliedCoupon, {
+        name: formData.name,
+        phone: formData.phone,
+        address: formData.street,
+        city: formData.city,
+        district: formData.district,
+        state: formData.state,
+        pincode: formData.postal_code,
+      });
       if (!res.success && res.error) {
         setCheckoutError(res.error);
         return;
@@ -157,10 +168,10 @@ export const Checkout: React.FC = () => {
         <div className="lg:col-span-7 bg-white p-8 rounded-3xl border border-[#E5E7EB] luxury-shadow space-y-6">
           <form onSubmit={handlePlaceOrder} className="space-y-6">
             <div>
-              <h3 className="font-display text-lg font-bold text-[#111111] mb-4">1. Delivery Address</h3>
+              <h3 className="font-display text-lg font-bold text-[#111111] mb-4">1. Delivery & Customer Details</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-display">
                 <div>
-                  <label className="block text-[#6B7280] font-bold mb-1">Full Name</label>
+                  <label className="block text-[#111111] font-bold mb-1">Full Name (NAME) *</label>
                   <input
                     type="text"
                     required
@@ -170,7 +181,7 @@ export const Checkout: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-[#6B7280] font-bold mb-1">Phone Number</label>
+                  <label className="block text-[#111111] font-bold mb-1">Phone Number (PHONE) *</label>
                   <input
                     type="text"
                     required
@@ -180,7 +191,7 @@ export const Checkout: React.FC = () => {
                   />
                 </div>
                 <div className="sm:col-span-2">
-                  <label className="block text-[#6B7280] font-bold mb-1">Street Address / Penthouse</label>
+                  <label className="block text-[#111111] font-bold mb-1">Address / Street / Flat (ADDESS) *</label>
                   <input
                     type="text"
                     required
@@ -190,7 +201,7 @@ export const Checkout: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-[#6B7280] font-bold mb-1">City</label>
+                  <label className="block text-[#111111] font-bold mb-1">City (CITY) *</label>
                   <input
                     type="text"
                     required
@@ -200,12 +211,33 @@ export const Checkout: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-[#6B7280] font-bold mb-1">Postal Code</label>
+                  <label className="block text-[#111111] font-bold mb-1">District (DISTRICT) *</label>
                   <input
                     type="text"
                     required
+                    value={formData.district}
+                    onChange={(e) => setFormData({ ...formData, district: e.target.value })}
+                    className="w-full bg-[#F6F7F9] border border-[#E5E7EB] rounded-xl px-4 py-3 text-[#111111] focus:outline-none focus:border-[#6D5EF6]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[#111111] font-bold mb-1">State (STATE) *</label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.state}
+                    onChange={(e) => setFormData({ ...formData, state: e.target.value })}
+                    className="w-full bg-[#F6F7F9] border border-[#E5E7EB] rounded-xl px-4 py-3 text-[#111111] focus:outline-none focus:border-[#6D5EF6]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[#111111] font-bold mb-1">Pincode (PINCODE) *</label>
+                  <input
+                    type="text"
+                    required
+                    maxLength={6}
                     value={formData.postal_code}
-                    onChange={(e) => setFormData({ ...formData, postal_code: e.target.value })}
+                    onChange={(e) => setFormData({ ...formData, postal_code: e.target.value.replace(/\D/g, '') })}
                     className="w-full bg-[#F6F7F9] border border-[#E5E7EB] rounded-xl px-4 py-3 text-[#111111] focus:outline-none focus:border-[#6D5EF6]"
                   />
                 </div>

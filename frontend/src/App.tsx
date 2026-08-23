@@ -16,7 +16,6 @@ import { TrackOrder } from './pages/storefront/TrackOrder';
 import { CustomerDashboard } from './pages/storefront/CustomerDashboard';
 import { BlogsPage } from './pages/storefront/BlogsPage';
 import { FAQPage } from './pages/storefront/FAQPage';
-import { ContactPage } from './pages/storefront/ContactPage';
 import { AboutPage } from './pages/storefront/AboutPage';
 
 // Admin Pages
@@ -61,7 +60,6 @@ export const App: React.FC = () => {
                     <Route path="/blogs" element={<BlogsPage />} />
                     <Route path="/blogs/:slug" element={<BlogsPage />} />
                     <Route path="/faq" element={<FAQPage />} />
-                    <Route path="/contact" element={<ContactPage />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/about-us" element={<AboutPage />} />
                     <Route path="/gallery" element={<Home />} />
