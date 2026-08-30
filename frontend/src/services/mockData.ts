@@ -33,7 +33,7 @@ export const mockCollections: Collection[] = [
     slug: 'crafted-series',
     tagline: 'Crafted to Shine. Signature Acoustic Precision.',
     hero_image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=1600&q=80',
-    description: 'Engineered with 10mm Graphene Drivers and space-grade materials.',
+    description: '',
     is_featured: true,
   },
   {
@@ -522,10 +522,10 @@ export const mockBlogs: Blog[] = [
 export const mockTestimonials: Testimonial[] = [
   {
     id: 'test-1',
-    customer_name: 'Marcus Thorne',
-    location: 'London, UK',
+    customer_name: 'Shubam Patil',
+    location: 'Kalyan, Maharashtra',
     rating: 5,
-    quote: 'The active noise cancellation completely blew me away. Beats my AirPods Pro 2 in soundstage expansion and sub-bass clarity.',
+    quote: 'I loved your unisex series.',
     purchased_item: 'EarCraft Apex Pro (Crafted Series)',
   },
   {
@@ -533,7 +533,7 @@ export const mockTestimonials: Testimonial[] = [
     customer_name: 'Ananya Sharma',
     location: 'Bengaluru, India',
     rating: 5,
-    quote: 'The transparent polycarbonate chassis looks exceptionally refined. Audio quality is true audiophile tier.',
+    quote: 'I love the product.',
     purchased_item: 'Translucent Edition (Unisex Series)',
   }
 ];
@@ -578,7 +578,7 @@ export const mockGalleryItems: GalleryItem[] = [
 
 export const mockWhyFeatures: WhyFeature[] = [
   { id: 'wf-1', icon: 'Sliders', title: 'Premium Design', desc: 'Crafted from space-grade anodized aluminum & optical glass.' },
-  { id: 'wf-2', icon: 'Volume2', title: 'Crystal Clear Audio', desc: 'Custom 10mm Graphene diaphragms with sub-bass down to 15Hz.' },
+  { id: 'wf-2', icon: 'Volume2', title: 'Crystal Clear Audio', desc: '' },
   { id: 'wf-3', icon: 'Wifi', title: 'Bluetooth Connectivity', desc: 'Bluetooth 5.4 multipoint pairing with 0.03s ultra-low latency.' },
   { id: 'wf-5', icon: 'BatteryCharging', title: 'Long Battery Life', desc: '1 hour of continuous playback + 31.5 hours in wireless Qi case.' },
   { id: 'wf-6', icon: 'Zap', title: 'Fast Charging', desc: '10 minutes of Type-C fast charge yields 4 hours of listening.' },

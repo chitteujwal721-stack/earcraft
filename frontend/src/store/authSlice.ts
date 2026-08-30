@@ -7,12 +7,12 @@ interface AuthState {
   isAuthenticated: boolean;
 }
 
-const defaultAdminUser: User = {
-  id: 'usr-admin-1',
-  email: 'admin@earcraft.com',
-  first_name: 'Super',
-  last_name: 'Admin',
-  role: 'SUPER_ADMIN',
+const defaultCustomerUser: User = {
+  id: 'usr-cust-1',
+  email: 'member@earcraft.com',
+  first_name: 'VIP',
+  last_name: 'Collector',
+  role: 'CUSTOMER',
   avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
   is_email_verified: true,
   is_active: true,
@@ -20,8 +20,8 @@ const defaultAdminUser: User = {
 };
 
 const initialState: AuthState = {
-  user: defaultAdminUser,
-  token: 'mock-jwt-super-admin-token',
+  user: defaultCustomerUser,
+  token: 'mock-jwt-customer-token',
   isAuthenticated: true,
 };
 

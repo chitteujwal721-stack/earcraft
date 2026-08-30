@@ -18,21 +18,6 @@ import { BlogsPage } from './pages/storefront/BlogsPage';
 import { FAQPage } from './pages/storefront/FAQPage';
 import { AboutPage } from './pages/storefront/AboutPage';
 
-// Admin Pages
-import { AdminLayout } from './pages/admin/AdminLayout';
-import { AdminLogin } from './pages/admin/AdminLogin';
-import { Dashboard } from './pages/admin/Dashboard';
-import { CategoriesPage } from './pages/admin/CategoriesPage';
-import { CategoryProductsPage } from './pages/admin/CategoryProductsPage';
-import { ProductManager } from './pages/admin/ProductManager';
-import { MediaLibrary } from './pages/admin/MediaLibrary';
-import { OrderManager } from './pages/admin/OrderManager';
-import { CustomerList } from './pages/admin/CustomerList';
-import { CMSControl } from './pages/admin/CMSControl';
-import { Marketing } from './pages/admin/Marketing';
-import { AnalyticsPage } from './pages/admin/AnalyticsPage';
-import { SettingsPage } from './pages/admin/SettingsPage';
-
 export const App: React.FC = () => {
   return (
     <Provider store={store}>
@@ -54,7 +39,6 @@ export const App: React.FC = () => {
                     <Route path="/product/:slug" element={<ProductDetail />} />
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/track-order" element={<TrackOrder />} />
-                    <Route path="/customer/dashboard font" element={<CustomerDashboard />} />
                     <Route path="/customer/dashboard" element={<CustomerDashboard />} />
                     <Route path="/wishlist" element={<CustomerDashboard />} />
                     <Route path="/blogs" element={<BlogsPage />} />
@@ -73,24 +57,6 @@ export const App: React.FC = () => {
               </div>
             }
           />
-
-          {/* Admin Login Route */}
-          <Route path="/admin/login" element={<AdminLogin />} />
-
-          {/* SaaS Admin & CMS Dashboard Routes */}
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="categories" element={<CategoriesPage />} />
-            <Route path="categories/:categoryId/products" element={<CategoryProductsPage />} />
-            <Route path="products" element={<ProductManager />} />
-            <Route path="media" element={<MediaLibrary />} />
-            <Route path="orders" element={<OrderManager />} />
-            <Route path="customers" element={<CustomerList />} />
-            <Route path="cms" element={<CMSControl />} />
-            <Route path="marketing" element={<Marketing />} />
-            <Route path="analytics" element={<AnalyticsPage />} />
-            <Route path="settings" element={<SettingsPage />} />
-          </Route>
 
         </Routes>
       </Router>
