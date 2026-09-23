@@ -53,7 +53,8 @@ export const checkoutService = {
     product: Product,
     variant: ProductVariant,
     quantity: number = 1,
-    customer?: CustomerDetails
+    customer?: CustomerDetails,
+    appliedCoupon?: Coupon | null
   ): WhatsAppCheckoutResult {
     try {
       if (!product || !variant) {
@@ -73,9 +74,23 @@ export const checkoutService = {
       }
 
       const price = variant.price || product.base_price;
-      const totalAmount = price * quantity;
+      const subtotal = price * quantity;
+
+      let discount = 0;
+      if (appliedCoupon) {
+        if (appliedCoupon.discount_type === 'PERCENTAGE') {
+          discount = (subtotal * appliedCoupon.discount_value) / 100;
+          if (appliedCoupon.max_discount_amount) {
+            discount = Math.min(discount, appliedCoupon.max_discount_amount);
+          }
+        } else {
+          discount = appliedCoupon.discount_value;
+        }
+        discount = Math.min(discount, subtotal);
+      }
+
+      const finalAmount = Math.max(0, subtotal - discount);
       const formattedPrice = price.toLocaleString('en-IN');
-      const formattedTotal = totalAmount.toLocaleString('en-IN');
 
       const messageParts: string[] = [
         `Hi EarCraft! 👋`,
@@ -106,9 +121,24 @@ export const checkoutService = {
         `Edition: ${variant.name}`,
         `Quantity: ${quantity}`,
         `Unit Price: ₹${formattedPrice}`,
-        `Total Amount: ₹${formattedTotal}`,
         ``,
+        `━━━━━━━━━━━━━━━━`
+      );
+
+      if (discount > 0 && appliedCoupon) {
+        messageParts.push(
+          `Subtotal: ₹${subtotal.toLocaleString('en-IN')}`,
+          `Promo Code: ${appliedCoupon.code} (₹${discount.toLocaleString('en-IN')} OFF)`,
+          `Discount: -₹${discount.toLocaleString('en-IN')}`,
+          `Discounted Total: ₹${finalAmount.toLocaleString('en-IN')}`
+        );
+      } else {
+        messageParts.push(`Total Amount: ₹${finalAmount.toLocaleString('en-IN')}`);
+      }
+
+      messageParts.push(
         `━━━━━━━━━━━━━━━━`,
+        ``,
         `Please confirm my order.`,
         `Thank you!`
       );
@@ -210,11 +240,16 @@ export const checkoutService = {
       );
 
       if (discount > 0 && appliedCoupon) {
-        messageParts.push(`Subtotal: ₹${rawSubtotal.toLocaleString('en-IN')}`);
-        messageParts.push(`Discount (${appliedCoupon.code}): -₹${discount.toLocaleString('en-IN')}`);
+        messageParts.push(
+          `Subtotal: ₹${rawSubtotal.toLocaleString('en-IN')}`,
+          `Promo Code: ${appliedCoupon.code} (₹${discount.toLocaleString('en-IN')} OFF)`,
+          `Discount: -₹${discount.toLocaleString('en-IN')}`,
+          `Discounted Total: ₹${finalAmount.toLocaleString('en-IN')}`
+        );
+      } else {
+        messageParts.push(`Total Amount: ₹${finalAmount.toLocaleString('en-IN')}`);
       }
 
-      messageParts.push(`Total Amount: ₹${finalAmount.toLocaleString('en-IN')}`);
       messageParts.push(`━━━━━━━━━━━━━━━━`);
       messageParts.push(``);
       messageParts.push(`Please confirm my order.`);

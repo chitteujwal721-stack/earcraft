@@ -485,6 +485,15 @@ export const mockOrders: Order[] = [
 
 export const mockCoupons: Coupon[] = [
   {
+    id: 'coup-craft100',
+    code: 'CRAFT100',
+    discount_type: 'FIXED',
+    discount_value: 100,
+    min_order_amount: 0,
+    expiry_date: '2026-12-31',
+    is_active: true,
+  },
+  {
     id: 'coup-1',
     code: 'SHINE2026',
     discount_type: 'PERCENTAGE',
