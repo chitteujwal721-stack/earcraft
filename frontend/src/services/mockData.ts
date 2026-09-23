@@ -405,7 +405,7 @@ export const mockHeroSlides: HeroSlide[] = [
 ];
 
 export const mockAnnouncementBar: AnnouncementBarConfig = {
-  enabled: true,
+  enabled: false,
   text: 'COMPLIMENTARY EXPRESS INSURED SHIPPING ON ALL EARCRAFT ORDERS — CODE: SHINE2026',
   link: '/shop',
   background_color: '#F6F7F9',
