@@ -61,7 +61,7 @@ export const mockProducts: Product[] = [
     barcode: '8901234567801',
     category: mockCategories[0],
     collection: mockCollections[0],
-    base_price: 1599,
+    base_price: 1499,
     compare_at_price: 1999,
     is_featured: true,
     is_new_arrival: true,
@@ -71,7 +71,7 @@ export const mockProducts: Product[] = [
       { id: 'img-crafted-drop', url: '/crafted-drop.png', alt_text: 'Crafted Drop', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-cd-1', sku: 'EC-CRF-DROP', name: 'Signature Silver', material: 'Crafted Alloy', color: '#E5E7EB', price: 1599, stock_quantity: 25, is_available: true }
+      { id: 'var-cd-1', sku: 'EC-CRF-DROP', name: 'Signature Silver', material: 'Crafted Alloy', color: '#E5E7EB', price: 1499, stock_quantity: 25, is_available: true }
     ],
     avg_rating: 4.9,
     review_count: 84,
@@ -92,7 +92,7 @@ export const mockProducts: Product[] = [
     barcode: '8901234567802',
     category: mockCategories[0],
     collection: mockCollections[0],
-    base_price: 1599,
+    base_price: 1499,
     compare_at_price: 1999,
     is_featured: true,
     is_new_arrival: true,
@@ -102,7 +102,7 @@ export const mockProducts: Product[] = [
       { id: 'img-crafted-diamond', url: '/crafted_Diamond.png', alt_text: 'Crafted Diamond', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-cd-2', sku: 'EC-CRF-DMND', name: 'Diamond Silver', material: 'Diamond Polished Alloy', color: '#F6F7F9', price: 1599, stock_quantity: 20, is_available: true }
+      { id: 'var-cd-2', sku: 'EC-CRF-DMND', name: 'Diamond Silver', material: 'Diamond Polished Alloy', color: '#F6F7F9', price: 1499, stock_quantity: 20, is_available: true }
     ],
     avg_rating: 5.0,
     review_count: 112,
@@ -123,7 +123,7 @@ export const mockProducts: Product[] = [
     barcode: '8901234567803',
     category: mockCategories[0],
     collection: mockCollections[0],
-    base_price: 1599,
+    base_price: 1499,
     compare_at_price: 1999,
     is_featured: true,
     is_new_arrival: false,
@@ -133,7 +133,7 @@ export const mockProducts: Product[] = [
       { id: 'img-crafted-florat', url: '/crafted_florat.png', alt_text: 'Crafted Florat', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-cd-3', sku: 'EC-CRF-FLRT', name: 'Rose Gold Floral', material: 'Anodized Alloy', color: '#E8B4B8', price: 1599, stock_quantity: 18, is_available: true }
+      { id: 'var-cd-3', sku: 'EC-CRF-FLRT', name: 'Rose Gold Floral', material: 'Anodized Alloy', color: '#E8B4B8', price: 1499, stock_quantity: 18, is_available: true }
     ],
     avg_rating: 4.8,
     review_count: 65,
@@ -154,7 +154,7 @@ export const mockProducts: Product[] = [
     barcode: '8901234567804',
     category: mockCategories[0],
     collection: mockCollections[0],
-    base_price: 1599,
+    base_price: 1499,
     compare_at_price: 1999,
     is_featured: true,
     is_new_arrival: true,
@@ -164,7 +164,7 @@ export const mockProducts: Product[] = [
       { id: 'img-crafted-fly', url: '/crafted_fly.png', alt_text: 'Crafted Fly', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-cd-4', sku: 'EC-CRF-FLY', name: 'Wings Silver', material: 'Space Grade Alloy', color: '#111111', price: 1599, stock_quantity: 15, is_available: true }
+      { id: 'var-cd-4', sku: 'EC-CRF-FLY', name: 'Wings Silver', material: 'Space Grade Alloy', color: '#111111', price: 1499, stock_quantity: 15, is_available: true }
     ],
     avg_rating: 4.9,
     review_count: 48,
@@ -185,7 +185,7 @@ export const mockProducts: Product[] = [
     barcode: '8901234567805',
     category: mockCategories[0],
     collection: mockCollections[0],
-    base_price: 1599,
+    base_price: 1499,
     compare_at_price: 1999,
     is_featured: true,
     is_new_arrival: false,
@@ -195,7 +195,7 @@ export const mockProducts: Product[] = [
       { id: 'img-crafted-knot', url: '/crafted_knot.png', alt_text: 'Crafted Knot', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-cd-5', sku: 'EC-CRF-KNOT', name: 'Silver Knot', material: 'Crafted Alloy', color: '#6D5EF6', price: 1599, stock_quantity: 30, is_available: true }
+      { id: 'var-cd-5', sku: 'EC-CRF-KNOT', name: 'Silver Knot', material: 'Crafted Alloy', color: '#6D5EF6', price: 1499, stock_quantity: 30, is_available: true }
     ],
     avg_rating: 5.0,
     review_count: 92,
@@ -216,7 +216,7 @@ export const mockProducts: Product[] = [
     barcode: '8901234567806',
     category: mockCategories[0],
     collection: mockCollections[0],
-    base_price: 1599,
+    base_price: 1499,
     compare_at_price: 1999,
     is_featured: true,
     is_new_arrival: true,
@@ -226,7 +226,7 @@ export const mockProducts: Product[] = [
       { id: 'img-golden-crafted-diamond', url: '/goldencolor/golden_crafted_diamond.png', alt_text: 'Golden Crafted Diamond', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-gcd-1', sku: 'EC-CRF-GLD-DMND', name: '24K Golden Diamond', material: '24K Gold Plated Alloy', color: '#D4AF37', price: 1599, stock_quantity: 15, is_available: true }
+      { id: 'var-gcd-1', sku: 'EC-CRF-GLD-DMND', name: '24K Golden Diamond', material: '24K Gold Plated Alloy', color: '#D4AF37', price: 1499, stock_quantity: 15, is_available: true }
     ],
     avg_rating: 5.0,
     review_count: 78,
@@ -247,7 +247,7 @@ export const mockProducts: Product[] = [
     barcode: '8901234567807',
     category: mockCategories[0],
     collection: mockCollections[0],
-    base_price: 1599,
+    base_price: 1499,
     compare_at_price: 1999,
     is_featured: true,
     is_new_arrival: true,
@@ -257,7 +257,7 @@ export const mockProducts: Product[] = [
       { id: 'img-golden-crafted-drop', url: '/goldencolor/golden_crafted_draft.png', alt_text: 'Golden Crafted Drop', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-gcd-2', sku: 'EC-CRF-GLD-DROP', name: '24K Golden Drop', material: '24K Gold Plated Alloy', color: '#FFD700', price: 1599, stock_quantity: 20, is_available: true }
+      { id: 'var-gcd-2', sku: 'EC-CRF-GLD-DROP', name: '24K Golden Drop', material: '24K Gold Plated Alloy', color: '#FFD700', price: 1499, stock_quantity: 20, is_available: true }
     ],
     avg_rating: 4.9,
     review_count: 65,
@@ -278,7 +278,7 @@ export const mockProducts: Product[] = [
     barcode: '8901234567808',
     category: mockCategories[0],
     collection: mockCollections[0],
-    base_price: 1599,
+    base_price: 1499,
     compare_at_price: 1999,
     is_featured: true,
     is_new_arrival: true,
@@ -288,7 +288,7 @@ export const mockProducts: Product[] = [
       { id: 'img-golden-crafted-florat', url: '/goldencolor/golden_crafted_florat.png', alt_text: 'Golden Crafted Florat', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-gcd-3', sku: 'EC-CRF-GLD-FLRT', name: '24K Golden Floral', material: '24K Gold Anodized Alloy', color: '#E6CA65', price: 1599, stock_quantity: 18, is_available: true }
+      { id: 'var-gcd-3', sku: 'EC-CRF-GLD-FLRT', name: '24K Golden Floral', material: '24K Gold Anodized Alloy', color: '#E6CA65', price: 1499, stock_quantity: 18, is_available: true }
     ],
     avg_rating: 4.9,
     review_count: 52,
@@ -309,7 +309,7 @@ export const mockProducts: Product[] = [
     barcode: '8901234567809',
     category: mockCategories[0],
     collection: mockCollections[0],
-    base_price: 1599,
+    base_price: 1499,
     compare_at_price: 1999,
     is_featured: true,
     is_new_arrival: true,
@@ -319,7 +319,7 @@ export const mockProducts: Product[] = [
       { id: 'img-golden-crafted-knot', url: '/goldencolor/golden_crafted_knot.png', alt_text: 'Golden Crafted Knot', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-gcd-4', sku: 'EC-CRF-GLD-KNOT', name: '24K Golden Knot', material: '24K Gold Plated Alloy', color: '#D4AF37', price: 1599, stock_quantity: 25, is_available: true }
+      { id: 'var-gcd-4', sku: 'EC-CRF-GLD-KNOT', name: '24K Golden Knot', material: '24K Gold Plated Alloy', color: '#D4AF37', price: 1499, stock_quantity: 25, is_available: true }
     ],
     avg_rating: 5.0,
     review_count: 86,
@@ -340,7 +340,7 @@ export const mockProducts: Product[] = [
     barcode: '8901234567810',
     category: mockCategories[0],
     collection: mockCollections[0],
-    base_price: 1599,
+    base_price: 1499,
     compare_at_price: 1999,
     is_featured: true,
     is_new_arrival: true,
@@ -350,7 +350,7 @@ export const mockProducts: Product[] = [
       { id: 'img-golden-fly', url: '/goldencolor/golden_fly.png', alt_text: 'Golden Fly', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-gcd-5', sku: 'EC-CRF-GLD-FLY', name: '24K Golden Fly', material: '24K Gold Plated Alloy', color: '#D4AF37', price: 1599, stock_quantity: 20, is_available: true }
+      { id: 'var-gcd-5', sku: 'EC-CRF-GLD-FLY', name: '24K Golden Fly', material: '24K Gold Plated Alloy', color: '#D4AF37', price: 1499, stock_quantity: 20, is_available: true }
     ],
     avg_rating: 5.0,
     review_count: 74,
@@ -371,7 +371,7 @@ export const mockProducts: Product[] = [
     barcode: '8901234567806',
     category: mockCategories[1],
     collection: mockCollections[1],
-    base_price: 1599,
+    base_price: 1499,
     compare_at_price: 1999,
     is_featured: true,
     is_new_arrival: true,
@@ -381,7 +381,7 @@ export const mockProducts: Product[] = [
       { id: 'img-unisex-classic-black', url: '/unisex/unisex_Classic black.png', alt_text: 'Unisex Classic Black', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-uk-1', sku: 'EC-UNI-CLS-BLK', name: 'Classic Black', material: 'Ergonomic Polymer', color: '#111111', price: 1599, stock_quantity: 40, is_available: true }
+      { id: 'var-uk-1', sku: 'EC-UNI-CLS-BLK', name: 'Classic Black', material: 'Ergonomic Polymer', color: '#111111', price: 1499, stock_quantity: 40, is_available: true }
     ],
     avg_rating: 4.8,
     review_count: 76,
@@ -508,6 +508,15 @@ export const mockCoupons: Coupon[] = [
     discount_type: 'FIXED',
     discount_value: 5000,
     min_order_amount: 25000,
+    expiry_date: '2026-12-31',
+    is_active: true,
+  },
+  {
+    id: 'coup-3',
+    code: 'AKSPROMO',
+    discount_type: 'FIXED',
+    discount_value: 100,
+    min_order_amount: 0,
     expiry_date: '2026-12-31',
     is_active: true,
   }

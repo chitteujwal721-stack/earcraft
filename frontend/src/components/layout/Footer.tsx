@@ -164,7 +164,7 @@ export const Footer: React.FC = () => {
 
       {/* Footer Bottom Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-[#E5E7EB] flex flex-col md:flex-row items-center justify-between text-xs text-[#6B7280] gap-4">
-        <p>© {new Date().getFullYear()} EARCRAFT ACOUSTIC LABS INC. ALL RIGHTS RESERVED.</p>
+        <p>© {new Date().getFullYear()} EARCRAFT ALL RIGHTS RESERVED.</p>
         <div className="flex items-center gap-6 font-display">
           <Link to="/policies" className="hover:text-[#111111]">Privacy Policy</Link>
           <Link to="/policies" className="hover:text-[#111111]">Terms of Service</Link>
