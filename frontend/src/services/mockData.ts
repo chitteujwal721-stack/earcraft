@@ -393,23 +393,53 @@ export const mockProducts: Product[] = [
 
 export const mockHeroSlides: HeroSlide[] = [
   {
-    id: 'hero-1',
-    title: 'CRAFTED TO SHINE',
-    subtitle: 'Designed for Everyday Style. Engineered for Exceptional Sound.',
-    cta_text: 'Explore Crafted',
-    cta_link: '/shop?series=crafted',
-    background_image: '/crafted-drop.png',
+    id: 'hero-navratri-1',
+    title: 'NAVRATRI UTSAV OFFER',
+    subtitle: 'Buy Any 2 Luxury Earphones For Just ₹2,399 • Celebrate The Festive Beats In Style',
+    cta_text: 'Claim Navratri Offer',
+    cta_link: '/shop',
+    background_image: '/slider/slide-1.png',
     is_active: true,
     order: 1,
+  },
+  {
+    id: 'hero-navratri-2',
+    title: 'DOUBLE THE SOUND, HALF THE PRICE',
+    subtitle: 'Get Any 2 EarCraft Earphones @ ₹2,399 Only. Handcrafted Acoustic Jewelry.',
+    cta_text: 'Shop Festive Duo',
+    cta_link: '/shop?series=unisex',
+    background_image: '/slider/slide-2.png',
+    is_active: true,
+    order: 2,
+  },
+  {
+    id: 'hero-navratri-3',
+    title: 'CRAFTED TO SHINE THIS FESTIVAL',
+    subtitle: 'Exclusive Navratri Celebration Deal — Mix & Match Any 2 Pairs For Only ₹2,399.',
+    cta_text: 'Explore Crafted Series',
+    cta_link: '/shop?series=crafted',
+    background_image: '/slider/slide-3.png',
+    is_active: true,
+    order: 3,
+  },
+  {
+    id: 'hero-navratri-4',
+    title: 'DANDIYA NIGHTS READY ACOUSTICS',
+    subtitle: 'Limited Navratri Festive Stock. Buy 2 Pairs For ₹2,399 & Shine on Every Garba Night.',
+    cta_text: 'Grab The Deal Now',
+    cta_link: '/shop',
+    background_image: '/slider/slide-4.png',
+    is_active: true,
+    order: 4,
   }
 ];
 
 export const mockAnnouncementBar: AnnouncementBarConfig = {
-  enabled: false,
-  text: 'COMPLIMENTARY EXPRESS INSURED SHIPPING ON ALL EARCRAFT ORDERS — CODE: SHINE2026',
+  enabled: true,
+  text: '🌸 NAVRATRI OFFER HAS STARTED: Buy Any 2 Luxury Earphones For Only ₹2,399! (Save ₹599) 🪔',
   link: '/shop',
-  background_color: '#F6F7F9',
-  text_color: '#6D5EF6',
+  background_color: '#120D1D',
+  text_color: '#FBBF24',
 };
 
 export const mockSiteSettings: SiteSettings = {
@@ -484,6 +514,24 @@ export const mockOrders: Order[] = [
 ];
 
 export const mockCoupons: Coupon[] = [
+  {
+    id: 'coup-navratri',
+    code: 'NAVRATRI2399',
+    discount_type: 'FIXED',
+    discount_value: 599,
+    min_order_amount: 2399,
+    expiry_date: '2026-11-30',
+    is_active: true,
+  },
+  {
+    id: 'coup-navratri-short',
+    code: 'NAVRATRI',
+    discount_type: 'FIXED',
+    discount_value: 599,
+    min_order_amount: 2399,
+    expiry_date: '2026-11-30',
+    is_active: true,
+  },
   {
     id: 'coup-craft100',
     code: 'CRAFT100',

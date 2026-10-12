@@ -164,6 +164,35 @@ export const CartDrawer: React.FC = () => {
           {/* Coupon Input Section */}
           {items.length > 0 && (
             <div className="px-6 py-3 border-t border-[#E5E7EB] bg-[#F6F7F9]">
+              {/* Navratri Deal Quick Apply Banner */}
+              {!appliedCoupon && items.reduce((sum, item) => sum + item.quantity, 0) >= 2 && (
+                <div className="mb-2.5 p-2.5 rounded-xl bg-gradient-to-r from-amber-500/15 to-purple-500/15 border border-amber-400/40 flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-1.5 text-[#111111]">
+                    <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                    <span className="font-medium text-[11px]">
+                      <strong className="text-amber-700">Navratri Deal:</strong> 2 for ₹2,399!
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const navCoupon = mockCoupons.find(c => c.code === 'NAVRATRI2399');
+                      if (navCoupon) dispatch(applyCoupon(navCoupon));
+                    }}
+                    className="px-2.5 py-1 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-bold text-[10px] tracking-wider uppercase transition-colors shadow-sm"
+                  >
+                    Apply Deal
+                  </button>
+                </div>
+              )}
+
+              {!appliedCoupon && items.reduce((sum, item) => sum + item.quantity, 0) === 1 && (
+                <div className="mb-2.5 p-2 rounded-xl bg-amber-50 border border-amber-200 text-[11px] text-amber-800 flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                  <span>Add 1 more earphone to unlock <strong>Navratri Offer: 2 for ₹2,399</strong>!</span>
+                </div>
+              )}
+
               {appliedCoupon ? (
                 <div className="flex items-center justify-between p-2.5 bg-[#6D5EF6]/10 border border-[#6D5EF6]/30 rounded-xl text-xs">
                   <span className="text-[#6D5EF6] font-semibold flex items-center gap-1 font-display">
@@ -182,7 +211,7 @@ export const CartDrawer: React.FC = () => {
                     type="text"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
-                    placeholder="Coupon Code (e.g. SHINE2026)"
+                    placeholder="Coupon Code (e.g. NAVRATRI2399)"
                     className="flex-1 bg-white border border-[#E5E7EB] rounded-xl px-3 py-2 text-xs text-[#111111] placeholder-[#6B7280] focus:outline-none focus:border-[#6D5EF6] uppercase font-display"
                   />
                   <button

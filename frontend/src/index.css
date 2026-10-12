@@ -60,6 +60,15 @@
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid #E5E7EB;
   }
+
+  @keyframes slideProgress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+
+  .animate-slide-progress {
+    animation: slideProgress 5s linear;
+  }
 }
 
 /* Custom Minimal Luxury Light Scrollbar */
