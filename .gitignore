@@ -45,3 +45,7 @@ db.sqlite3
 *.swp
 *.swo
 .DS_Store
+
+# Scratch / Temp files
+_tmp_*
+
