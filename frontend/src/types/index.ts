@@ -66,6 +66,23 @@ export interface ProductVariant {
   is_available: boolean;
 }
 
+export const isPurpleVariant = (variant?: { color?: string; name?: string } | null): boolean => {
+  if (!variant) return false;
+  const c = (variant.color || '').toLowerCase();
+  const n = (variant.name || '').toLowerCase();
+  return (
+    c === '#6d5ef6' ||
+    c === '#8b7eff' ||
+    c === '#b38cff' ||
+    c === '#7c3aed' ||
+    c === '#a855f7' ||
+    c.includes('purple') ||
+    c.includes('violet') ||
+    n.includes('purple') ||
+    n.includes('violet')
+  );
+};
+
 export interface ProductImage {
   id: string;
   url: string;

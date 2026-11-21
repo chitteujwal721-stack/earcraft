@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { addToCart, toggleCartDrawer } from '../../store/cartSlice';
@@ -23,6 +23,7 @@ import { WhatsAppIcon } from '../../components/common/WhatsAppIcon';
 import { checkoutService, CustomerDetails } from '../../services/checkoutService';
 import { WarrantyCard } from '../../components/storefront/WarrantyCard';
 import { CustomerDetailsModal } from '../../components/storefront/CustomerDetailsModal';
+import { isPurpleVariant } from '../../types';
 
 export const ProductDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -36,18 +37,34 @@ export const ProductDetail: React.FC = () => {
   const isWishlisted = wishlistItems.some(i => i.id === product?.id);
 
   const [selectedImage, setSelectedImage] = useState<string>(product?.images[0]?.url || '');
-  const [selectedVariant, setSelectedVariant] = useState(product?.variants[0]);
+  const [selectedVariant, setSelectedVariant] = useState(() => {
+    const firstAvailable = product?.variants.find(v => (v.stock_quantity ?? 0) > 0 && v.is_available !== false && !isPurpleVariant(v));
+    return firstAvailable || product?.variants[0];
+  });
   const [quantity, setQuantity] = useState<number>(1);
   const [activeTab, setActiveTab] = useState<'specs' | 'included' | 'delivery' | '360' | 'reviews' | 'warranty'>('specs');
   const [checkoutError, setCheckoutError] = useState<string>('');
   const [isCustomerModalOpen, setIsCustomerModalOpen] = useState<boolean>(false);
 
+  useEffect(() => {
+    if (product) {
+      const firstAvailable = product.variants.find(v => (v.stock_quantity ?? 0) > 0 && v.is_available !== false && !isPurpleVariant(v));
+      setSelectedVariant(firstAvailable || product.variants[0]);
+      setSelectedImage(product.images[0]?.url || '');
+    }
+  }, [product?.id]);
+
   if (!product) return null;
 
   const currentPrice = selectedVariant?.price || product.base_price;
   const comparePrice = selectedVariant?.compare_at_price || product.compare_at_price;
+  const isOutOfStock = (selectedVariant?.stock_quantity ?? 0) <= 0 || selectedVariant?.is_available === false || isPurpleVariant(selectedVariant);
 
   const handleAddToCart = () => {
+    if (isOutOfStock) {
+      setCheckoutError('Selected edition is currently out of stock.');
+      return;
+    }
     const targetVariant = selectedVariant || product.variants[0];
     if (targetVariant) {
       dispatch(addToCart({ product, variant: targetVariant, quantity }));
@@ -56,6 +73,10 @@ export const ProductDetail: React.FC = () => {
 
   const handleOpenBuyNowModal = () => {
     setCheckoutError('');
+    if (isOutOfStock) {
+      setCheckoutError('Selected edition is currently out of stock.');
+      return;
+    }
     const targetVariant = selectedVariant || product.variants[0];
     if (!targetVariant) {
       setCheckoutError('Please select a product variant.');
@@ -187,11 +208,11 @@ export const ProductDetail: React.FC = () => {
               </span>
             </div>
 
-            <span className={`text-xs font-bold px-3 py-1 rounded-full font-display ${(selectedVariant?.stock_quantity || 0) > 0
+            <span className={`text-xs font-bold px-3 py-1 rounded-full font-display ${!isOutOfStock
               ? 'bg-emerald-50 text-emerald-600 border border-emerald-200'
               : 'bg-red-50 text-red-600 border border-red-200'
               }`}>
-              {(selectedVariant?.stock_quantity || 0) > 0 ? `In Stock (${selectedVariant?.stock_quantity} left)` : 'Sold Out'}
+              {!isOutOfStock ? `In Stock (${selectedVariant?.stock_quantity} left)` : 'Out of Stock'}
             </span>
           </div>
 
@@ -202,25 +223,43 @@ export const ProductDetail: React.FC = () => {
                 Select Finish Edition:
               </label>
               <div className="grid grid-cols-2 gap-3">
-                {product.variants.map((variant) => (
-                  <button
-                    key={variant.id}
-                    onClick={() => setSelectedVariant(variant)}
-                    className={`p-3.5 rounded-2xl border text-left flex items-center gap-3 transition-all ${selectedVariant?.id === variant.id
-                      ? 'border-[#6D5EF6] bg-white text-[#111111] violet-shadow-sm font-bold'
-                      : 'border-[#E5E7EB] bg-white text-[#6B7280] hover:border-[#111111]'
-                      }`}
-                  >
-                    <span
-                      className="w-4 h-4 rounded-full border border-[#E5E7EB] shrink-0 shadow-inner"
-                      style={{ backgroundColor: variant.color }}
-                    />
-                    <div className="text-xs">
-                      <p className="font-display font-bold text-[#111111]">{variant.name}</p>
-                      <p className="text-[10px] text-[#6B7280]">SKU: {variant.sku}</p>
-                    </div>
-                  </button>
-                ))}
+                {product.variants.map((variant) => {
+                  const isVarOut = (variant.stock_quantity ?? 0) <= 0 || variant.is_available === false || isPurpleVariant(variant);
+                  return (
+                    <button
+                      key={variant.id}
+                      onClick={() => setSelectedVariant(variant)}
+                      className={`p-3.5 rounded-2xl border text-left flex items-center justify-between gap-3 transition-all ${selectedVariant?.id === variant.id
+                        ? 'border-[#6D5EF6] bg-white text-[#111111] violet-shadow-sm font-bold'
+                        : 'border-[#E5E7EB] bg-white text-[#6B7280] hover:border-[#111111]'
+                        } ${isVarOut ? 'opacity-75' : ''}`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span
+                          className={`w-4 h-4 rounded-full border shadow-inner relative flex items-center justify-center overflow-hidden shrink-0 ${
+                            isVarOut ? 'border-red-300 opacity-60' : 'border-[#E5E7EB]'
+                          }`}
+                          style={{ backgroundColor: variant.color }}
+                        >
+                          {isVarOut && (
+                            <span className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                              <span className="w-[140%] h-[1.5px] bg-red-500 rotate-45 transform" />
+                            </span>
+                          )}
+                        </span>
+                        <div className="text-xs">
+                          <p className="font-display font-bold text-[#111111]">{variant.name}</p>
+                          <p className="text-[10px] text-[#6B7280]">SKU: {variant.sku}</p>
+                        </div>
+                      </div>
+                      {isVarOut && (
+                        <span className="text-[10px] font-bold text-red-500 uppercase tracking-wider font-display shrink-0 bg-red-50 px-2 py-0.5 rounded-full border border-red-200">
+                          Sold Out
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -232,6 +271,7 @@ export const ProductDetail: React.FC = () => {
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   className="p-2 text-[#6B7280] hover:text-[#6D5EF6]"
+                  disabled={isOutOfStock}
                 >
                   <Minus className="w-4 h-4" />
                 </button>
@@ -239,6 +279,7 @@ export const ProductDetail: React.FC = () => {
                 <button
                   onClick={() => setQuantity(quantity + 1)}
                   className="p-2 text-[#6B7280] hover:text-[#6D5EF6]"
+                  disabled={isOutOfStock}
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -262,18 +303,34 @@ export const ProductDetail: React.FC = () => {
               </div>
             )}
 
+            {isOutOfStock && !checkoutError && (
+              <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-xl text-xs font-display">
+                This edition is currently out of stock. Please select another edition or check back later.
+              </div>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <button
                 onClick={handleAddToCart}
-                className="bg-white hover:bg-[#F6F7F9] text-[#111111] border border-[#E5E7EB] py-4 rounded-full font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all font-display luxury-shadow"
+                disabled={isOutOfStock}
+                className={`${isOutOfStock
+                  ? 'bg-gray-100 text-gray-400 border-[#E5E7EB] cursor-not-allowed'
+                  : 'bg-white hover:bg-[#F6F7F9] text-[#111111] border-[#E5E7EB] luxury-shadow'
+                } border py-4 rounded-full font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all font-display`}
               >
-                <ShoppingBag className="w-4 h-4 text-[#6D5EF6]" /> Add to Cart
+                <ShoppingBag className={`w-4 h-4 ${isOutOfStock ? 'text-gray-400' : 'text-[#6D5EF6]'}`} />
+                {isOutOfStock ? 'Out of Stock' : 'Add to Cart'}
               </button>
               <button
                 onClick={handleOpenBuyNowModal}
-                className="bg-[#25D366] hover:bg-[#20bd5a] text-white py-4 rounded-full font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all font-display shadow-xl"
+                disabled={isOutOfStock}
+                className={`${isOutOfStock
+                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed shadow-none'
+                  : 'bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-xl'
+                } py-4 rounded-full font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all font-display`}
               >
-                <WhatsAppIcon className="w-4 h-4 text-white shrink-0" /> Buy Now on WhatsApp
+                <WhatsAppIcon className="w-4 h-4 text-white shrink-0" />
+                {isOutOfStock ? 'Sold Out' : 'Buy Now on WhatsApp'}
               </button>
             </div>
           </div>

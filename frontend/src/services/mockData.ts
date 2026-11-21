@@ -71,7 +71,8 @@ export const mockProducts: Product[] = [
       { id: 'img-crafted-drop', url: '/crafted-drop.png', alt_text: 'Crafted Drop', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-cd-1', sku: 'EC-CRF-DROP', name: 'Signature Silver', material: 'Crafted Alloy', color: '#E5E7EB', price: 1499, stock_quantity: 25, is_available: true }
+      { id: 'var-cd-1', sku: 'EC-CRF-DROP', name: 'Signature Silver', material: 'Crafted Alloy', color: '#E5E7EB', price: 1499, stock_quantity: 0, is_available: false },
+      { id: 'var-cd-1-pur', sku: 'EC-CRF-DROP-PUR', name: 'Electric Violet', material: 'Anodized Alloy', color: '#6D5EF6', price: 1499, stock_quantity: 0, is_available: false }
     ],
     avg_rating: 4.9,
     review_count: 84,
@@ -102,7 +103,8 @@ export const mockProducts: Product[] = [
       { id: 'img-crafted-diamond', url: '/crafted_Diamond.png', alt_text: 'Crafted Diamond', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-cd-2', sku: 'EC-CRF-DMND', name: 'Diamond Silver', material: 'Diamond Polished Alloy', color: '#F6F7F9', price: 1499, stock_quantity: 20, is_available: true }
+      { id: 'var-cd-2', sku: 'EC-CRF-DMND', name: 'Diamond Silver', material: 'Diamond Polished Alloy', color: '#F6F7F9', price: 1499, stock_quantity: 0, is_available: false },
+      { id: 'var-cd-2-pur', sku: 'EC-CRF-DMND-PUR', name: 'Purple Diamond', material: 'Anodized Alloy', color: '#6D5EF6', price: 1499, stock_quantity: 0, is_available: false }
     ],
     avg_rating: 5.0,
     review_count: 112,
@@ -133,7 +135,8 @@ export const mockProducts: Product[] = [
       { id: 'img-crafted-florat', url: '/crafted_florat.png', alt_text: 'Crafted Florat', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-cd-3', sku: 'EC-CRF-FLRT', name: 'Rose Gold Floral', material: 'Anodized Alloy', color: '#E8B4B8', price: 1499, stock_quantity: 18, is_available: true }
+      { id: 'var-cd-3', sku: 'EC-CRF-FLRT', name: 'Rose Gold Floral', material: 'Anodized Alloy', color: '#E8B4B8', price: 1499, stock_quantity: 0, is_available: false },
+      { id: 'var-cd-3-pur', sku: 'EC-CRF-FLRT-PUR', name: 'Purple Floral', material: 'Anodized Alloy', color: '#6D5EF6', price: 1499, stock_quantity: 0, is_available: false }
     ],
     avg_rating: 4.8,
     review_count: 65,
@@ -164,7 +167,8 @@ export const mockProducts: Product[] = [
       { id: 'img-crafted-fly', url: '/crafted_fly.png', alt_text: 'Crafted Fly', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-cd-4', sku: 'EC-CRF-FLY', name: 'Wings Silver', material: 'Space Grade Alloy', color: '#111111', price: 1499, stock_quantity: 15, is_available: true }
+      { id: 'var-cd-4', sku: 'EC-CRF-FLY', name: 'Wings Silver', material: 'Space Grade Alloy', color: '#111111', price: 1499, stock_quantity: 0, is_available: false },
+      { id: 'var-cd-4-pur', sku: 'EC-CRF-FLY-PUR', name: 'Purple Wings', material: 'Space Grade Alloy', color: '#6D5EF6', price: 1499, stock_quantity: 0, is_available: false }
     ],
     avg_rating: 4.9,
     review_count: 48,
@@ -195,7 +199,7 @@ export const mockProducts: Product[] = [
       { id: 'img-crafted-knot', url: '/crafted_knot.png', alt_text: 'Crafted Knot', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-cd-5', sku: 'EC-CRF-KNOT', name: 'Silver Knot', material: 'Crafted Alloy', color: '#6D5EF6', price: 1499, stock_quantity: 30, is_available: true }
+      { id: 'var-cd-5', sku: 'EC-CRF-KNOT', name: 'Purple Knot', material: 'Crafted Alloy', color: '#6D5EF6', price: 1499, stock_quantity: 0, is_available: false }
     ],
     avg_rating: 5.0,
     review_count: 92,
@@ -381,7 +385,8 @@ export const mockProducts: Product[] = [
       { id: 'img-unisex-classic-black', url: '/unisex/unisex_Classic black.png', alt_text: 'Unisex Classic Black', is_primary: true, order: 1 }
     ],
     variants: [
-      { id: 'var-uk-1', sku: 'EC-UNI-CLS-BLK', name: 'Classic Black', material: 'Ergonomic Polymer', color: '#111111', price: 1499, stock_quantity: 40, is_available: true }
+      { id: 'var-uk-1', sku: 'EC-UNI-CLS-BLK', name: 'Classic Black', material: 'Ergonomic Polymer', color: '#111111', price: 1499, stock_quantity: 40, is_available: true },
+      { id: 'var-uk-1-pur', sku: 'EC-UNI-CLS-PUR', name: 'Cyber Violet', material: 'Ergonomic Polymer', color: '#6D5EF6', price: 1499, stock_quantity: 0, is_available: false }
     ],
     avg_rating: 4.8,
     review_count: 76,
@@ -393,53 +398,43 @@ export const mockProducts: Product[] = [
 
 export const mockHeroSlides: HeroSlide[] = [
   {
-    id: 'hero-navratri-1',
-    title: 'NAVRATRI UTSAV OFFER',
-    subtitle: 'Buy Any 2 Luxury Earphones For Just ₹2,399 • Celebrate The Festive Beats In Style',
-    cta_text: 'Claim Navratri Offer',
-    cta_link: '/shop',
-    background_image: '/slider/slide-1.png',
+    id: 'hero-1',
+    title: 'CRAFTED TO SHINE',
+    subtitle: 'Designed for Everyday Style. Engineered for Exceptional Sound.',
+    cta_text: 'Explore Crafted Series',
+    cta_link: '/shop?series=crafted',
+    background_image: '/crafted-drop.png',
     is_active: true,
     order: 1,
   },
   {
-    id: 'hero-navratri-2',
-    title: 'DOUBLE THE SOUND, HALF THE PRICE',
-    subtitle: 'Get Any 2 EarCraft Earphones @ ₹2,399 Only. Handcrafted Acoustic Jewelry.',
-    cta_text: 'Shop Festive Duo',
+    id: 'hero-2',
+    title: 'UNISEX SERIES',
+    subtitle: 'Ultra-lightweight acoustic monitors engineered for seamless everyday listening.',
+    cta_text: 'Explore Unisex Series',
     cta_link: '/shop?series=unisex',
-    background_image: '/slider/slide-2.png',
+    background_image: '/unisex/unisex_Classic black.png',
     is_active: true,
     order: 2,
   },
   {
-    id: 'hero-navratri-3',
-    title: 'CRAFTED TO SHINE THIS FESTIVAL',
-    subtitle: 'Exclusive Navratri Celebration Deal — Mix & Match Any 2 Pairs For Only ₹2,399.',
-    cta_text: 'Explore Crafted Series',
-    cta_link: '/shop?series=crafted',
-    background_image: '/slider/slide-3.png',
+    id: 'hero-3',
+    title: 'BESPOKE ACOUSTICS',
+    subtitle: 'Handcrafted precision diaphragms & graphene soundstage architecture.',
+    cta_text: 'Discover Collection',
+    cta_link: '/shop',
+    background_image: '/crafted_Diamond.png',
     is_active: true,
     order: 3,
-  },
-  {
-    id: 'hero-navratri-4',
-    title: 'DANDIYA NIGHTS READY ACOUSTICS',
-    subtitle: 'Limited Navratri Festive Stock. Buy 2 Pairs For ₹2,399 & Shine on Every Garba Night.',
-    cta_text: 'Grab The Deal Now',
-    cta_link: '/shop',
-    background_image: '/slider/slide-4.png',
-    is_active: true,
-    order: 4,
   }
 ];
 
 export const mockAnnouncementBar: AnnouncementBarConfig = {
   enabled: true,
-  text: '🌸 NAVRATRI OFFER HAS STARTED: Buy Any 2 Luxury Earphones For Only ₹2,399! (Save ₹599) 🪔',
+  text: 'COMPLIMENTARY EXPRESS INSURED SHIPPING ON ALL ORDERS — CODE: CRAFT100',
   link: '/shop',
-  background_color: '#120D1D',
-  text_color: '#FBBF24',
+  background_color: '#F6F7F9',
+  text_color: '#6D5EF6',
 };
 
 export const mockSiteSettings: SiteSettings = {
@@ -514,24 +509,6 @@ export const mockOrders: Order[] = [
 ];
 
 export const mockCoupons: Coupon[] = [
-  {
-    id: 'coup-navratri',
-    code: 'NAVRATRI2399',
-    discount_type: 'FIXED',
-    discount_value: 599,
-    min_order_amount: 2399,
-    expiry_date: '2026-11-30',
-    is_active: true,
-  },
-  {
-    id: 'coup-navratri-short',
-    code: 'NAVRATRI',
-    discount_type: 'FIXED',
-    discount_value: 599,
-    min_order_amount: 2399,
-    expiry_date: '2026-11-30',
-    is_active: true,
-  },
   {
     id: 'coup-craft100',
     code: 'CRAFT100',

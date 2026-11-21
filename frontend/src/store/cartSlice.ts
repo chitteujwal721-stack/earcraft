@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CartItem, Product, ProductVariant, Coupon } from '../types';
+import { CartItem, Product, ProductVariant, Coupon, isPurpleVariant } from '../types';
 
 interface CartState {
   items: CartItem[];
@@ -19,6 +19,9 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<{ product: Product; variant: ProductVariant; quantity?: number }>) => {
       const { product, variant, quantity = 1 } = action.payload;
+      if ((variant.stock_quantity ?? 0) <= 0 || variant.is_available === false || isPurpleVariant(variant)) {
+        return;
+      }
       const existing = state.items.find(item => item.product.id === product.id && item.variant.id === variant.id);
       if (existing) {
         existing.quantity += quantity;

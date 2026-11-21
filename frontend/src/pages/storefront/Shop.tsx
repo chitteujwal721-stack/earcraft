@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 import { ProductCard } from '../../components/storefront/ProductCard';
+import { isPurpleVariant } from '../../types';
 import { SlidersHorizontal, Grid, List, Search, X, Sparkles } from 'lucide-react';
 
 export const Shop: React.FC = () => {
@@ -41,7 +42,7 @@ export const Shop: React.FC = () => {
       if (prod.base_price > maxPrice) return false;
       // In-Stock filter
       if (inStockOnly) {
-        const hasStock = prod.variants.some(v => v.stock_quantity > 0);
+        const hasStock = prod.variants.some(v => (v.stock_quantity || 0) > 0 && v.is_available !== false && !isPurpleVariant(v));
         if (!hasStock) return false;
       }
       // Search query

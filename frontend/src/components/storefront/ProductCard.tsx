@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Product } from '../../types';
+import { Product, isPurpleVariant } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addToCart } from '../../store/cartSlice';
 import { toggleWishlist } from '../../store/wishlistSlice';
@@ -18,13 +18,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const primaryImage = product.images.find(img => img.is_primary)?.url || product.images[0]?.url;
   const secondaryImage = product.images[1]?.url || primaryImage;
 
-  const firstVariant = product.variants[0];
+  const isOutOfStock = product.variants.length > 0 && product.variants.every(v => (v.stock_quantity ?? 0) <= 0 || v.is_available === false || isPurpleVariant(v));
+  const firstAvailableVariant = product.variants.find(v => (v.stock_quantity ?? 0) > 0 && v.is_available !== false && !isPurpleVariant(v));
 
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (firstVariant) {
-      dispatch(addToCart({ product, variant: firstVariant, quantity: 1 }));
+    if (firstAvailableVariant) {
+      dispatch(addToCart({ product, variant: firstAvailableVariant, quantity: 1 }));
     }
   };
 
@@ -66,6 +67,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               New Release
             </span>
           )}
+          {isOutOfStock && (
+            <span className="text-[10px] uppercase font-bold tracking-widest bg-red-600 text-white px-2.5 py-0.5 rounded-full shadow-sm">
+              Out of Stock
+            </span>
+          )}
         </div>
 
         {/* Wishlist Button */}
@@ -85,9 +91,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="absolute bottom-3 left-3 right-3 flex gap-2 sm:opacity-0 sm:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10">
           <button
             onClick={handleQuickAdd}
-            className="flex-1 bg-[#111111] hover:bg-[#6D5EF6] text-white py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors font-display shadow-lg"
+            disabled={isOutOfStock}
+            className={`flex-1 ${
+              isOutOfStock
+                ? 'bg-gray-400 cursor-not-allowed text-white'
+                : 'bg-[#111111] hover:bg-[#6D5EF6] text-white'
+            } py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors font-display shadow-lg`}
           >
-            <ShoppingBag className="w-3.5 h-3.5" /> Quick Add
+            <ShoppingBag className="w-3.5 h-3.5" /> {isOutOfStock ? 'Sold Out' : 'Quick Add'}
           </button>
         </div>
       </Link>
@@ -107,14 +118,25 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           {/* Color Indicator Swatches */}
           <div className="flex items-center gap-1.5 mt-2.5">
-            {product.variants.map((v) => (
-              <span
-                key={v.id}
-                className="w-3.5 h-3.5 rounded-full border border-[#E5E7EB] shadow-inner"
-                style={{ backgroundColor: v.color }}
-                title={v.name}
-              />
-            ))}
+            {product.variants.map((v) => {
+              const isVarOut = (v.stock_quantity ?? 0) <= 0 || v.is_available === false || isPurpleVariant(v);
+              return (
+                <span
+                  key={v.id}
+                  className={`w-4 h-4 rounded-full border shadow-inner relative flex items-center justify-center overflow-hidden transition-all ${
+                    isVarOut ? 'opacity-50 border-red-300 ring-1 ring-red-400/50' : 'border-[#E5E7EB]'
+                  }`}
+                  style={{ backgroundColor: v.color }}
+                  title={`${v.name}${isVarOut ? ' (Out of stock)' : ''}`}
+                >
+                  {isVarOut && (
+                    <span className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <span className="w-[140%] h-[1.5px] bg-red-500 rotate-45 transform shadow-sm" />
+                    </span>
+                  )}
+                </span>
+              );
+            })}
           </div>
         </div>
 

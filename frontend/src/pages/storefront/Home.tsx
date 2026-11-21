@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 import { HeroCarousel } from '../../components/storefront/HeroCarousel';
-import { NavratriOfferBanner } from '../../components/storefront/NavratriOfferBanner';
 import { ProductCard } from '../../components/storefront/ProductCard';
 import {
   Sparkles,
@@ -64,13 +63,10 @@ export const Home: React.FC = () => {
   return (
     <div className="space-y-28 pb-20 bg-[#F6F7F9] text-[#111111] overflow-hidden">
       
-      {/* SECTION 1: Dynamic Hero Section with Slider Images & Navratri Notice */}
+      {/* SECTION 1: Dynamic Hero Section */}
       <HeroCarousel />
 
-      {/* SECTION 2: Navratri Offer Showcase Banner */}
-      <NavratriOfferBanner />
-
-      {/* SECTION 4: Crafted Series Showcase */}
+      {/* SECTION 2: Crafted Series Showcase */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#E5E7EB] pb-6">
           <div>
